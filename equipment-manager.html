@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipment Manager | M&amp;M&amp;CO</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="subhero">
+    <p class="tag">M&amp;M&amp;CO Team Page</p>
+    <h1>Equipment Manager</h1>
+    <p>Get the equipment out before each game and warm-up, and make sure nothing is left behind.</p>
+    <p><a class="back-link" href="index.html">&larr; Back to main site</a></p>
+  </header>
+
+  <nav class="topnav">
+    <a href="index.html">Home</a>
+    <a href="fitness-coach.html">Fitness Coach</a>
+    <a href="positions-manager.html">Positions Manager</a>
+    <a href="equipment-manager.html">Equipment Manager</a>
+    <a href="statistics.html">Statistics</a>
+  </nav>
+
+  <main class="section">
+    <section class="panel">
+      <h2>What I Do</h2>
+      <p>I get out the equipment before each game and warm-up. I generally just get a few cones and some netballs out.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Netballs</h3>
+          <p>The netballs are required to play netball and to practise shooting and training drills.</p>
+        </div>
+        <div class="card">
+          <h3>Cones</h3>
+          <p>The cones are to create a small area around the net to run drills.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Equipment Checklist</h2>
+      <p class="section-intro">Tick items off as you set up. Ticks are saved in this browser, so you can refresh without losing your place.</p>
+      <div class="grid-2">
+        <div>
+          <h3>Before a Game</h3>
+          <ul class="checklist" data-list="game"></ul>
+        </div>
+        <div>
+          <h3>Before a Warm-Up / Training</h3>
+          <ul class="checklist" data-list="training"></ul>
+        </div>
+      </div>
+      <div class="actions" style="margin-top:1rem;">
+        <button type="button" class="btn-primary" id="save-checklist">Save checklist</button>
+        <button type="button" class="btn-secondary" id="reset-checklist">Reset ticks</button>
+        <button type="button" class="btn-secondary" id="add-item">Add equipment item</button>
+      </div>
+      <p class="status" id="equipment-status"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Equipment Notes</h2>
+      <div class="grid-2">
+        <div class="form-row">
+          <label for="game-notes">Game setup notes</label>
+          <textarea id="game-notes" placeholder="e.g. 3 netballs and 6 cones near the goal"></textarea>
+        </div>
+        <div class="form-row">
+          <label for="training-notes">Warm-up / training notes</label>
+          <textarea id="training-notes" placeholder="e.g. cones in a small square around the net for passing drills"></textarea>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn-primary" id="save-notes">Save notes</button>
+      </div>
+      <p class="status" id="notes-status"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>M&amp;M&amp;CO</strong> &mdash; Taste the Rainbow</p>
+  </footer>
+
+  <script>
+    const STORAGE_KEY = 'mmco-equipment';
+    const DEFAULT_ITEMS = {
+      game: [
+        { id: 'game-netballs', label: 'Netballs (3)', done: false },
+        { id: 'game-cones', label: 'Cones (6)', done: false },
+        { id: 'game-goalpost', label: 'Goalpost check', done: false },
+        { id: 'game-bibs', label: 'Bibs', done: false },
+        { id: 'game-firstaid', label: 'First aid kit', done: false },
+        { id: 'game-scoresheet', label: 'Score sheet & pen', done: false },
+        { id: 'game-timer', label: 'Timer / whistle', done: false }
+      ],
+      training: [
+        { id: 'training-netballs', label: 'Netballs (3)', done: false },
+        { id: 'training-cones', label: 'Cones around the net', done: false },
+        { id: 'training-goalpost', label: 'Goalpost check', done: false },
+        { id: 'training-bibs', label: 'Bibs', done: false },
+        { id: 'training-water', label: 'Water bottles', done: false }
+      ]
+    };
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (saved && saved.items) return saved;
+      } catch (e) {}
+      return { items: structuredClone(DEFAULT_ITEMS), notes: { game: '', training: '' } };
+    }
+
+    let state = loadState();
+
+    const statusEl = document.getElementById('equipment-status');
+    const notesStatus = document.getElementById('notes-status');
+    const gameNotes = document.getElementById('game-notes');
+    const trainingNotes = document.getElementById('training-notes');
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function renderList(type) {
+      const list = document.querySelector(`.checklist[data-list="${type}"]`);
+      const items = state.items[type] || [];
+      list.innerHTML = items.map(item => `
+        <li>
+          <input type="checkbox" ${item.done ? 'checked' : ''} data-type="${type}" data-id="${item.id}">
+          <span>${escapeHtml(item.label)}</span>
+          <button type="button" class="btn-danger small" data-remove-task="${type}|${item.id}" style="margin-left:auto;">Remove</button>
+        </li>`).join('') || '<li class="muted">No items. Add one below.</li>';
+
+      list.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', () => {
+          const item = state.items[type].find(i => i.id === cb.dataset.id);
+          if (item) item.done = cb.checked;
+        });
+      });
+      list.querySelectorAll('[data-remove-task]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const [t, id] = btn.dataset.removeTask.split('|');
+          state.items[t] = state.items[t].filter(i => i.id !== id);
+          renderList(t);
+        });
+      });
+    }
+
+    function persist() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    document.getElementById('save-checklist').addEventListener('click', () => {
+      persist();
+      statusEl.textContent = 'Checklist saved.';
+      statusEl.className = 'status success';
+    });
+
+    document.getElementById('reset-checklist').addEventListener('click', () => {
+      ['game', 'training'].forEach(t => state.items[t].forEach(i => { i.done = false; }));
+      renderList('game');
+      renderList('training');
+      persist();
+      statusEl.textContent = 'All ticks cleared.';
+      statusEl.className = 'status';
+    });
+
+    document.getElementById('add-item').addEventListener('click', () => {
+      const label = prompt('Equipment item to add:');
+      if (!label || !label.trim()) return;
+      const type = confirm('Add to Game checklist? Press Cancel to add to Warm-up / Training.') ? 'game' : 'training';
+      state.items[type].push({ id: type + '-' + Date.now(), label: label.trim(), done: false });
+      renderList(type);
+      persist();
+    });
+
+    gameNotes.value = (state.notes && state.notes.game) || '';
+    trainingNotes.value = (state.notes && state.notes.training) || '';
+
+    document.getElementById('save-notes').addEventListener('click', () => {
+      state.notes = { game: gameNotes.value.trim(), training: trainingNotes.value.trim() };
+      persist();
+      notesStatus.textContent = 'Notes saved.';
+      notesStatus.className = 'status success';
+    });
+
+    renderList('game');
+    renderList('training');
+  </script>
+</body>
+</html>
