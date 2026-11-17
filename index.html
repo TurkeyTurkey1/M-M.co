@@ -3,11 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>M&M&CO | Taste the Rainbow</title>
+  <title>M&amp;M&amp;CO | Taste the Rainbow</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="hero">
+  <header class="sitebar">
+    <a class="sitebrand" href="#home">M&amp;M&amp;CO</a>
+    <nav class="tabbar" aria-label="Site pages">
+      <a class="tab active" data-tab="home" href="#home">Home</a>
+      <a class="tab" data-tab="fitness" href="#fitness">Fitness Coach</a>
+      <a class="tab" data-tab="positions" href="#positions">Positions Manager</a>
+      <a class="tab" data-tab="equipment" href="#equipment">Equipment Manager</a>
+      <a class="tab" data-tab="statistics" href="#statistics">Statistics</a>
+    </nav>
+  </header>
+
+  <main id="tab-content">
+    <section class="tab-panel" id="panel-home" role="tabpanel">
+<header class="hero">
     <div class="hero-inner">
       <p class="tag">SEPEP Netball Team</p>
       <h1>M&amp;M&amp;CO</h1>
@@ -16,26 +29,7 @@
       <a class="btn" href="#team">Meet the Team</a>
     </div>
   </header>
-
-  <nav class="topnav">
-    <a class="brand" href="index.html">M&amp;M&amp;CO</a>
-    <a href="#about">About</a>
-    <a href="#team">Team</a>
-    <a href="#uniform">Uniform</a>
-    <a href="#profiles">Player Profiles</a>
-    <a href="#sessions">Training Sessions</a>
-    <a href="#extra">Extra Info</a>
-  </nav>
-  <nav class="subnav" aria-label="Team pages">
-    <span class="subnav-label">Team Pages:</span>
-    <a href="fitness-coach.html">Fitness Coach</a>
-    <a href="positions-manager.html">Positions Manager</a>
-    <a href="equipment-manager.html">Equipment Manager</a>
-    <a href="statistics.html">Statistics</a>
-  </nav>
-
-  <main>
-    <section id="about" class="section">
+<section id="about" class="section">
       <h2>About M&amp;M&amp;CO</h2>
       <div class="cards two">
         <div class="card">
@@ -123,22 +117,22 @@
       <h2>Team Role Pages</h2>
       <p class="section-intro">Dedicated pages for key team roles to plan, organise, and share information.</p>
       <div class="cards page-cards">
-        <a class="card page-card" href="fitness-coach.html">
+        <a class="card page-card" href="#fitness">
           <h3>Fitness Coach</h3>
           <p>Plan and set up warm-ups and fitness activities for training and game day.</p>
           <span class="card-link">Open page &rarr;</span>
         </a>
-        <a class="card page-card" href="positions-manager.html">
+        <a class="card page-card" href="#positions">
           <h3>Positions Manager</h3>
           <p>Use an interactive netball court to set positions for upcoming games, save setups, and share them with the team.</p>
           <span class="card-link">Open page &rarr;</span>
         </a>
-        <a class="card page-card" href="equipment-manager.html">
+        <a class="card page-card" href="#equipment">
           <h3>Equipment Manager</h3>
           <p>Organise and track equipment needed before each game and warm-up.</p>
           <span class="card-link">Open page &rarr;</span>
         </a>
-        <a class="card page-card" href="statistics.html">
+        <a class="card page-card" href="#statistics">
           <h3>Statistics</h3>
           <p>Record and review detailed netball statistics for players and games.</p>
           <span class="card-link">Open page &rarr;</span>
@@ -279,18 +273,1156 @@
         <p><a class="link" href="https://script.google.com/a/macros/s.tatachilla.sa.edu.au/s/AKfycbwNuCyqthkBm4vhm1KJte8POhQeh5vwzLKnbcClA2AM1ELzoBTslDfy9ei3t208tSV80Q/exec" target="_blank" rel="noopener noreferrer">Open M&amp;M&amp;CO Team Link</a></p>
       </div>
     </section>
+    </section>
+
+  <section class="tab-panel" id="panel-fitness" role="tabpanel" hidden>
+    <header class="subhero tab-hero">
+      <p class="tag">M&amp;M&amp;CO &bull; Taste the Rainbow</p>
+      <h1>Fitness Coach</h1>
+      <p>Plan and set up warm-ups and fitness activities for training and game day.</p>
+    </header>
+    <div class="section">
+<section class="panel">
+      <h2>Warm-Up Planner</h2>
+      <p class="section-intro">Add activities to build a warm-up. Saved plans stay in this browser so you can reuse and edit them.</p>
+      <form id="warmup-form">
+        <div class="grid-2">
+          <div class="form-row">
+            <label for="plan-name">Plan name</label>
+            <input type="text" id="plan-name" placeholder="e.g. Pre-game warm-up" required>
+          </div>
+          <div class="form-row">
+            <label for="plan-type">Plan type</label>
+            <select id="plan-type">
+              <option value="Training">Training</option>
+              <option value="Game Day">Game Day</option>
+              <option value="Recovery">Recovery</option>
+              <option value="Fitness">Fitness</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="plan-notes">Notes (optional)</label>
+          <textarea id="plan-notes" placeholder="Anything the team should know about this warm-up..."></textarea>
+        </div>
+
+        <div class="panel" style="box-shadow:none;background:#faf5ff;">
+          <h3 style="margin-top:0;">Add an activity</h3>
+          <div class="grid-2">
+            <div class="form-row">
+              <label for="act-name">Activity</label>
+              <input type="text" id="act-name" placeholder="e.g. Stretching">
+            </div>
+            <div class="form-row">
+              <label for="act-duration">Duration (mins)</label>
+              <input type="number" id="act-duration" min="1" step="1" placeholder="5">
+            </div>
+            <div class="form-row">
+              <label for="act-equipment">Equipment</label>
+              <input type="text" id="act-equipment" placeholder="e.g. N/A">
+            </div>
+            <div class="form-row">
+              <label for="act-details">Details</label>
+              <input type="text" id="act-details" placeholder="How to run the activity">
+            </div>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn-secondary" id="add-activity">Add activity</button>
+          </div>
+        </div>
+
+        <div id="activity-list-wrap" style="margin-top:1rem;">
+          <h3>Plan activities</h3>
+          <ul class="list" id="activity-list"><li class="muted">No activities yet. Add one above.</li></ul>
+          <p class="muted small">Total duration: <strong id="total-duration">0</strong> mins</p>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn-primary">Save plan</button>
+          <button type="button" class="btn-secondary" id="reset-plan">Clear form</button>
+        </div>
+        <p class="status" id="plan-status"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Saved Warm-Up Plans</h2>
+      <div id="saved-plans"></div>
+      <p class="muted small" id="plans-empty">No saved plans yet.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Warm-Up Ideas</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Dynamic Warm-Up</h3>
+          <ul>
+            <li>Jog around the court (1 min)</li>
+            <li>High knees and butt kicks (1 min)</li>
+            <li>Leg swings and arm circles (1 min)</li>
+            <li>Lunges and squats (1 min)</li>
+            <li>Short sprints and side shuffles (1 min)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Netball Footwork Warm-Up</h3>
+          <ul>
+            <li>Jog and pivot on whistle (2 min)</li>
+            <li>Freeze frame footwork game (5 min)</li>
+            <li>Partner passing while moving (3 min)</li>
+            <li>Shooting warm-up near the post (3 min)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    </div>
+  </section>
+  <section class="tab-panel" id="panel-positions" role="tabpanel" hidden>
+    <header class="subhero tab-hero">
+      <p class="tag">M&amp;M&amp;CO &bull; Taste the Rainbow</p>
+      <h1>Positions Manager</h1>
+      <p>Drag players around the court to set positions for upcoming games, save the setup, and share it with the team.</p>
+    </header>
+    <div class="section">
+<section class="panel">
+      <h2>Game Setup</h2>
+      <div class="grid-2">
+        <div class="form-row">
+          <label for="match-title">Match / setup name</label>
+          <input type="text" id="match-title" placeholder="e.g. Round 3 vs Riverside" value="Upcoming Game">
+        </div>
+        <div class="form-row">
+          <label for="match-date">Game date</label>
+          <input type="date" id="match-date">
+        </div>
+      </div>
+      <p class="muted small">Tip: click a player name below to choose who plays each position, then drag the tokens on the court.</p>
+    </section>
+
+    <div class="court-wrap">
+      <section class="panel">
+        <h2>Netball Court</h2>
+        <div class="court" id="court" aria-label="Interactive netball court">
+          <div class="line third t1"></div>
+          <div class="line third t2"></div>
+          <div class="centre-circle"></div>
+          <div class="goal-circle top"></div>
+          <div class="goal-circle bottom"></div>
+          <div class="post top"></div>
+          <div class="post bottom"></div>
+        </div>
+        <div class="actions" style="margin-top:.75rem;">
+          <button type="button" class="btn-secondary" id="reset-positions">Reset positions</button>
+          <button type="button" class="btn-primary" id="save-setup">Save setup</button>
+          <button type="button" class="btn-secondary" id="copy-link">Copy share link</button>
+        </div>
+        <p class="status" id="setup-status"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Players &amp; Positions</h2>
+        <div class="legend-grid" id="position-controls"></div>
+        <div class="actions" style="margin-top:1rem;">
+          <button type="button" class="btn-secondary" id="clear-players">Clear all players</button>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <h2>Saved Setups</h2>
+      <p class="section-intro">Saved setups stay in this browser. Use “Copy share link” to send the current setup to anyone.</p>
+      <div id="saved-setups"></div>
+      <p class="muted small" id="setups-empty">No saved setups yet.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Shareable Link</h2>
+      <p class="small">Paste this link in your team chat so everyone can open the same setup:</p>
+      <div class="form-row">
+        <input type="text" id="share-link" readonly>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn-secondary" id="copy-link-2">Copy link</button>
+      </div>
+      <p class="status" id="share-status"></p>
+    </section>
+    </div>
+  </section>
+  <section class="tab-panel" id="panel-equipment" role="tabpanel" hidden>
+    <header class="subhero tab-hero">
+      <p class="tag">M&amp;M&amp;CO &bull; Taste the Rainbow</p>
+      <h1>Equipment Manager</h1>
+      <p>Get the equipment out before each game and warm-up, and make sure nothing is left behind.</p>
+    </header>
+    <div class="section">
+<section class="panel">
+      <h2>What I Do</h2>
+      <p>I get out the equipment before each game and warm-up. I generally just get a few cones and some netballs out.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Netballs</h3>
+          <p>The netballs are required to play netball and to practise shooting and training drills.</p>
+        </div>
+        <div class="card">
+          <h3>Cones</h3>
+          <p>The cones are to create a small area around the net to run drills.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Equipment Checklist</h2>
+      <p class="section-intro">Tick items off as you set up. Ticks are saved in this browser, so you can refresh without losing your place.</p>
+      <div class="grid-2">
+        <div>
+          <h3>Before a Game</h3>
+          <ul class="checklist" data-list="game"></ul>
+        </div>
+        <div>
+          <h3>Before a Warm-Up / Training</h3>
+          <ul class="checklist" data-list="training"></ul>
+        </div>
+      </div>
+      <div class="actions" style="margin-top:1rem;">
+        <button type="button" class="btn-primary" id="save-checklist">Save checklist</button>
+        <button type="button" class="btn-secondary" id="reset-checklist">Reset ticks</button>
+        <button type="button" class="btn-secondary" id="add-item">Add equipment item</button>
+      </div>
+      <p class="status" id="equipment-status"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Equipment Notes</h2>
+      <div class="grid-2">
+        <div class="form-row">
+          <label for="game-notes">Game setup notes</label>
+          <textarea id="game-notes" placeholder="e.g. 3 netballs and 6 cones near the goal"></textarea>
+        </div>
+        <div class="form-row">
+          <label for="training-notes">Warm-up / training notes</label>
+          <textarea id="training-notes" placeholder="e.g. cones in a small square around the net for passing drills"></textarea>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn-primary" id="save-notes">Save notes</button>
+      </div>
+      <p class="status" id="notes-status"></p>
+    </section>
+    </div>
+  </section>
+  <section class="tab-panel" id="panel-statistics" role="tabpanel" hidden>
+    <header class="subhero tab-hero">
+      <p class="tag">M&amp;M&amp;CO &bull; Taste the Rainbow</p>
+      <h1>Statistics</h1>
+      <p>Record netball statistics for every game, review totals, and export the numbers.</p>
+    </header>
+    <div class="section">
+<section class="panel">
+      <h2>Game</h2>
+      <div class="grid-2">
+        <div class="form-row">
+          <label for="game-opponent">Opponent</label>
+          <input type="text" id="game-opponent" placeholder="e.g. Riverside Storm" value="Practice Match">
+        </div>
+        <div class="form-row">
+          <label for="game-date">Date</label>
+          <input type="date" id="game-date">
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn-primary" id="save-game">Save stats</button>
+        <button type="button" class="btn-secondary" id="new-game">New game</button>
+        <button type="button" class="btn-secondary" id="export-csv">Export current game (CSV)</button>
+        <button type="button" class="btn-secondary" id="add-player">Add player</button>
+      </div>
+      <p class="status" id="stats-status"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Player Statistics</h2>
+      <p class="section-intro">Enter numbers for each player. Shooting % is calculated automatically.</p>
+      <div class="scroll-x">
+        <table class="stats-table" id="stats-table"></table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Saved Games</h2>
+      <p class="section-intro">Saved games stay in this browser. Open a game to edit its stats.</p>
+      <div id="saved-games"></div>
+      <p class="muted small" id="games-empty">No saved games yet.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Netball Stat Guide</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Shooting</h3>
+          <ul>
+            <li><strong>Goals</strong> — shots that went in</li>
+            <li><strong>Goal Attempts</strong> — every shot taken</li>
+            <li><strong>Shooting %</strong> — goals &divide; attempts</li>
+            <li><strong>Goal Assists</strong> — pass that directly led to a goal</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Attack</h3>
+          <ul>
+            <li><strong>Centre Passes</strong> — centre passes taken</li>
+            <li><strong>Feeds</strong> — passes into the shooting circle</li>
+            <li><strong>Passes</strong> — total passes made</li>
+            <li><strong>Turnovers</strong> — possessions lost</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Defence</h3>
+          <ul>
+            <li><strong>Intercepts</strong> — balls caught from the opposition</li>
+            <li><strong>Deflections</strong> — balls touched but not caught</li>
+            <li><strong>Rebounds</strong> — recovered missed shots</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Discipline</h3>
+          <ul>
+            <li><strong>Penalties</strong> — total penalties conceded</li>
+            <li><strong>Offsides</strong> — offside calls</li>
+            <li><strong>Contact</strong> — contact calls</li>
+            <li><strong>Obstruction</strong> — obstruction calls</li>
+            <li><strong>Footwork</strong> — footwork calls</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    </div>
+  </section>
   </main>
 
   <footer>
     <p><strong>M&amp;M&amp;CO</strong> &mdash; Taste the Rainbow</p>
     <p class="footer-links">
-      <a href="index.html">Home</a> &middot;
-      <a href="fitness-coach.html">Fitness Coach</a> &middot;
-      <a href="positions-manager.html">Positions Manager</a> &middot;
-      <a href="equipment-manager.html">Equipment Manager</a> &middot;
-      <a href="statistics.html">Statistics</a>
+      <a href="#home">Home</a> &middot;
+      <a href="#fitness">Fitness Coach</a> &middot;
+      <a href="#positions">Positions Manager</a> &middot;
+      <a href="#equipment">Equipment Manager</a> &middot;
+      <a href="#statistics">Statistics</a>
     </p>
     <p class="muted">SEPEP Netball Team Website</p>
   </footer>
+
+<script>
+(function () {
+const STORAGE_KEY = 'mmco-warmup-plans';
+    let planActivities = [];
+
+    const els = {
+      form: document.getElementById('warmup-form'),
+      planName: document.getElementById('plan-name'),
+      planType: document.getElementById('plan-type'),
+      planNotes: document.getElementById('plan-notes'),
+      actName: document.getElementById('act-name'),
+      actDuration: document.getElementById('act-duration'),
+      actEquipment: document.getElementById('act-equipment'),
+      actDetails: document.getElementById('act-details'),
+      addActivity: document.getElementById('add-activity'),
+      activityList: document.getElementById('activity-list'),
+      totalDuration: document.getElementById('total-duration'),
+      savedPlans: document.getElementById('saved-plans'),
+      plansEmpty: document.getElementById('plans-empty'),
+      status: document.getElementById('plan-status'),
+      resetPlan: document.getElementById('reset-plan')
+    };
+
+    function loadPlans() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+      catch (e) { return []; }
+    }
+
+    function savePlans(plans) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(plans));
+    }
+
+    function renderActivities() {
+      if (!planActivities.length) {
+        els.activityList.innerHTML = '<li class="muted">No activities yet. Add one above.</li>';
+      } else {
+        els.activityList.innerHTML = planActivities.map((a, i) => `
+          <li>
+            <div><strong>${escapeHtml(a.name)}</strong> <span class="pill">${a.duration} min</span></div>
+            <div class="meta">${a.equipment ? 'Equipment: ' + escapeHtml(a.equipment) : ''}${a.details ? ' &middot; ' + escapeHtml(a.details) : ''}</div>
+            <div class="actions" style="margin-top:.4rem;">
+              <button type="button" class="btn-danger small" data-remove="${i}">Remove</button>
+            </div>
+          </li>`).join('');
+        els.activityList.querySelectorAll('[data-remove]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            planActivities.splice(Number(btn.dataset.remove), 1);
+            renderActivities();
+          });
+        });
+      }
+      els.totalDuration.textContent = planActivities.reduce((sum, a) => sum + Number(a.duration || 0), 0);
+    }
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    els.addActivity.addEventListener('click', () => {
+      if (!els.actName.value.trim()) { els.actName.focus(); return; }
+      const duration = Number(els.actDuration.value);
+      if (!duration || duration < 1) { els.actDuration.focus(); return; }
+      planActivities.push({
+        name: els.actName.value.trim(),
+        duration,
+        equipment: els.actEquipment.value.trim(),
+        details: els.actDetails.value.trim()
+      });
+      els.actName.value = '';
+      els.actDuration.value = '';
+      els.actEquipment.value = '';
+      els.actDetails.value = '';
+      els.actName.focus();
+      renderActivities();
+    });
+
+    els.form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!planActivities.length) {
+        els.status.textContent = 'Add at least one activity before saving.';
+        els.status.className = 'status warn';
+        return;
+      }
+      const plans = loadPlans();
+      plans.unshift({
+        id: Date.now(),
+        name: els.planName.value.trim() || 'Untitled warm-up',
+        type: els.planType.value,
+        notes: els.planNotes.value.trim(),
+        activities: planActivities.slice()
+      });
+      savePlans(plans);
+      els.status.textContent = 'Plan saved.';
+      els.status.className = 'status success';
+      resetFormFields();
+      renderSavedPlans();
+    });
+
+    els.resetPlan.addEventListener('click', () => {
+      resetFormFields();
+    });
+
+    function resetFormFields() {
+      els.form.reset();
+      planActivities = [];
+      renderActivities();
+    }
+
+    function renderSavedPlans() {
+      const plans = loadPlans();
+      els.plansEmpty.style.display = plans.length ? 'none' : 'block';
+      els.savedPlans.innerHTML = plans.map(p => {
+        const total = p.activities.reduce((s, a) => s + Number(a.duration || 0), 0);
+        const items = p.activities.map(a =>
+          `<li><strong>${escapeHtml(a.name)}</strong> <span class="pill">${a.duration} min</span>`
+          + (a.equipment ? `<div class="meta">Equipment: ${escapeHtml(a.equipment)}</div>` : '')
+          + (a.details ? `<div class="meta">${escapeHtml(a.details)}</div>` : '')
+          + `</li>`).join('');
+        return `
+          <div class="card" style="margin-bottom:1rem;">
+            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;align-items:start;">
+              <div>
+                <h3 style="margin:0 0 .25rem;">${escapeHtml(p.name)}</h3>
+                <p class="meta" style="margin:0;">${escapeHtml(p.type)} &middot; ${total} mins total</p>
+              </div>
+              <div class="actions" style="margin:0;">
+                <button type="button" class="btn-danger small" data-delete="${p.id}">Delete</button>
+              </div>
+            </div>
+            ${p.notes ? `<p class="small"><em>${escapeHtml(p.notes)}</em></p>` : ''}
+            <ul class="list">${items}</ul>
+          </div>`;
+      }).join('');
+      els.savedPlans.querySelectorAll('[data-delete]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = Number(btn.dataset.delete);
+          const plans = loadPlans().filter(p => p.id !== id);
+          savePlans(plans);
+          renderSavedPlans();
+        });
+      });
+    }
+
+    renderActivities();
+    renderSavedPlans();
+})();
+</script>
+<script>
+(function () {
+const POSITIONS = ['GS', 'GA', 'WA', 'C', 'WD', 'GD', 'GK'];
+    const DEFAULT_SPOTS = {
+      GS: { x: 50, y: 12 },
+      GA: { x: 30, y: 24 },
+      WA: { x: 68, y: 36 },
+      C:  { x: 50, y: 50 },
+      WD: { x: 32, y: 64 },
+      GD: { x: 70, y: 76 },
+      GK: { x: 50, y: 88 }
+    };
+    const PLAYERS = ['Maddie', 'Mia', 'Charlotte', 'Grace', 'Ella', 'Micah', 'Alex', 'Macca', 'Max', 'Wil', 'Jack'];
+    const STORAGE_KEY = 'mmco-positions-setups';
+
+    const state = {
+      title: 'Upcoming Game',
+      date: '',
+      assignments: {},   // position -> player name (or '')
+      spots: structuredClone(DEFAULT_SPOTS)
+    };
+    POSITIONS.forEach(p => { state.assignments[p] = ''; });
+
+    const court = document.getElementById('court');
+    const controls = document.getElementById('position-controls');
+    const statusEl = document.getElementById('setup-status');
+    const shareStatus = document.getElementById('share-status');
+    const shareInput = document.getElementById('share-link');
+    const titleInput = document.getElementById('match-title');
+    const dateInput = document.getElementById('match-date');
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function playerOptions(selected) {
+      return ['<option value="">— Unassigned —</option>']
+        .concat(PLAYERS.map(p => `<option value="${p}" ${p === selected ? 'selected' : ''}>${p}</option>`))
+        .join('');
+    }
+
+    function buildControls() {
+      controls.innerHTML = POSITIONS.map(pos => `
+        <div class="form-row">
+          <label for="assign-${pos}">${pos}</label>
+          <select id="assign-${pos}" data-pos="${pos}">
+            ${playerOptions(state.assignments[pos])}
+          </select>
+        </div>`).join('');
+      controls.querySelectorAll('select').forEach(sel => {
+        sel.addEventListener('change', () => {
+          state.assignments[sel.dataset.pos] = sel.value;
+          renderTokens();
+        });
+      });
+    }
+
+    function renderTokens() {
+      court.querySelectorAll('.player-token').forEach(t => t.remove());
+      POSITIONS.forEach(pos => {
+        const spot = state.spots[pos] || DEFAULT_SPOTS[pos];
+        const token = document.createElement('div');
+        token.className = 'player-token';
+        token.dataset.pos = pos;
+        token.style.left = spot.x + '%';
+        token.style.top = spot.y + '%';
+        token.innerHTML = `<div class="pos">${pos}</div><div class="name">${escapeHtml(state.assignments[pos] || 'Add player')}</div>`;
+        court.appendChild(token);
+        enableDrag(token, pos);
+      });
+    }
+
+    function enableDrag(token, pos) {
+      let dragging = false;
+      const onDown = (e) => {
+        dragging = true;
+        try { token.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+        e.preventDefault();
+      };
+      const onMove = (e) => {
+        if (!dragging) return;
+        const rect = court.getBoundingClientRect();
+        let x = ((e.clientX - rect.left) / rect.width) * 100;
+        let y = ((e.clientY - rect.top) / rect.height) * 100;
+        x = Math.max(6, Math.min(94, x));
+        y = Math.max(5, Math.min(95, y));
+        state.spots[pos] = { x, y };
+        token.style.left = x + '%';
+        token.style.top = y + '%';
+      };
+      const onUp = () => { dragging = false; };
+      token.addEventListener('pointerdown', onDown);
+      token.addEventListener('pointermove', onMove);
+      token.addEventListener('pointerup', onUp);
+      token.addEventListener('pointercancel', onUp);
+    }
+
+    function encodePayload(payload) {
+      const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+      return location.origin + location.pathname + '#setup=' + encoded;
+    }
+
+    function makeShareLink() {
+      return encodePayload({
+        title: state.title,
+        date: state.date,
+        assignments: state.assignments,
+        spots: state.spots
+      });
+    }
+
+    function updateShareLink() {
+      shareInput.value = makeShareLink();
+    }
+
+    function applyPayload(payload) {
+      state.title = payload.title || 'Upcoming Game';
+      state.date = payload.date || '';
+      POSITIONS.forEach(p => { state.assignments[p] = (payload.assignments && payload.assignments[p]) || ''; });
+      POSITIONS.forEach(p => {
+        const spot = payload.spots && payload.spots[p];
+        state.spots[p] = (spot && typeof spot.x === 'number' && typeof spot.y === 'number') ? spot : structuredClone(DEFAULT_SPOTS[p]);
+      });
+      titleInput.value = state.title;
+      dateInput.value = state.date;
+      buildControls();
+      renderTokens();
+      updateShareLink();
+    }
+
+    function loadFromHash() {
+      const hash = location.hash || '';
+      const prefix = '#setup=';
+      if (!hash.startsWith(prefix)) return;
+      try {
+        const payload = JSON.parse(decodeURIComponent(escape(atob(hash.slice(prefix.length)))));
+        applyPayload(payload);
+        statusEl.textContent = 'Loaded shared setup.';
+        statusEl.className = 'status success';
+      } catch (e) {
+        statusEl.textContent = 'That share link could not be read.';
+        statusEl.className = 'status warn';
+      }
+    }
+
+    function loadSetups() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+      catch (e) { return []; }
+    }
+    function saveSetups(list) { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
+
+    function renderSetups() {
+      const setups = loadSetups();
+      const wrap = document.getElementById('saved-setups');
+      document.getElementById('setups-empty').style.display = setups.length ? 'none' : 'block';
+      wrap.innerHTML = setups.map(s => {
+        const assigned = POSITIONS.filter(p => s.assignments[p]).map(p => `<span class="pill">${p}: ${escapeHtml(s.assignments[p])}</span>`).join('');
+        return `
+          <div class="card" style="margin-bottom:1rem;">
+            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;align-items:start;">
+              <div>
+                <h3 style="margin:0 0 .25rem;">${escapeHtml(s.title)}</h3>
+                <p class="meta" style="margin:0;">${escapeHtml(s.date || 'No date set')}</p>
+              </div>
+              <div class="actions" style="margin:0;">
+                <button type="button" class="btn-secondary small" data-load="${s.id}">Open</button>
+                <button type="button" class="btn-secondary small" data-share="${s.id}">Copy link</button>
+                <button type="button" class="btn-danger small" data-delete="${s.id}">Delete</button>
+              </div>
+            </div>
+            <div style="margin-top:.5rem;">${assigned || '<span class="muted small">No players assigned.</span>'}</div>
+          </div>`;
+      }).join('');
+
+      wrap.querySelectorAll('[data-delete]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = Number(btn.dataset.delete);
+          saveSetups(loadSetups().filter(s => s.id !== id));
+          renderSetups();
+        });
+      });
+      wrap.querySelectorAll('[data-load]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const setup = loadSetups().find(s => s.id === Number(btn.dataset.load));
+          if (setup) {
+            applyPayload(setup);
+            statusEl.textContent = 'Setup opened.';
+            statusEl.className = 'status success';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      });
+      wrap.querySelectorAll('[data-share]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const setup = loadSetups().find(s => s.id === Number(btn.dataset.share));
+          if (!setup) return;
+          const link = encodePayload({
+            title: setup.title,
+            date: setup.date,
+            assignments: setup.assignments,
+            spots: setup.spots
+          });
+          shareInput.value = link;
+          try {
+            await navigator.clipboard.writeText(link);
+            statusEl.textContent = 'Share link copied for "' + setup.title + '".';
+            statusEl.className = 'status success';
+          } catch (e) {
+            shareInput.select();
+            statusEl.textContent = 'Share link created below — press Ctrl+C to copy it.';
+            statusEl.className = 'status warn';
+          }
+        });
+      });
+    }
+
+    function refreshTitle() {
+      state.title = titleInput.value.trim() || 'Upcoming Game';
+      state.date = dateInput.value;
+      updateShareLink();
+    }
+
+    titleInput.addEventListener('input', refreshTitle);
+    dateInput.addEventListener('change', refreshTitle);
+
+    document.getElementById('reset-positions').addEventListener('click', () => {
+      state.spots = structuredClone(DEFAULT_SPOTS);
+      renderTokens();
+      updateShareLink();
+      statusEl.textContent = 'Positions reset to the starting layout.';
+      statusEl.className = 'status';
+    });
+
+    document.getElementById('clear-players').addEventListener('click', () => {
+      POSITIONS.forEach(p => { state.assignments[p] = ''; });
+      buildControls();
+      renderTokens();
+      updateShareLink();
+    });
+
+    document.getElementById('save-setup').addEventListener('click', () => {
+      refreshTitle();
+      const setups = loadSetups();
+      setups.unshift({
+        id: Date.now(),
+        title: state.title,
+        date: state.date,
+        assignments: { ...state.assignments },
+        spots: structuredClone(state.spots)
+      });
+      saveSetups(setups);
+      renderSetups();
+      statusEl.textContent = 'Setup saved.';
+      statusEl.className = 'status success';
+    });
+
+    async function copyLink() {
+      updateShareLink();
+      try {
+        await navigator.clipboard.writeText(shareInput.value);
+        shareStatus.textContent = 'Link copied to clipboard.';
+        shareStatus.className = 'status success';
+      } catch (e) {
+        shareInput.select();
+        shareStatus.textContent = 'Press Ctrl+C (or Cmd+C) to copy the selected link.';
+        shareStatus.className = 'status warn';
+      }
+    }
+    document.getElementById('copy-link').addEventListener('click', copyLink);
+    document.getElementById('copy-link-2').addEventListener('click', copyLink);
+
+    window.addEventListener('hashchange', loadFromHash);
+
+    buildControls();
+    renderTokens();
+    loadFromHash();
+    updateShareLink();
+    renderSetups();
+})();
+</script>
+<script>
+(function () {
+const STORAGE_KEY = 'mmco-equipment';
+    const DEFAULT_ITEMS = {
+      game: [
+        { id: 'game-netballs', label: 'Netballs (3)', done: false },
+        { id: 'game-cones', label: 'Cones (6)', done: false },
+        { id: 'game-goalpost', label: 'Goalpost check', done: false },
+        { id: 'game-bibs', label: 'Bibs', done: false },
+        { id: 'game-firstaid', label: 'First aid kit', done: false },
+        { id: 'game-scoresheet', label: 'Score sheet & pen', done: false },
+        { id: 'game-timer', label: 'Timer / whistle', done: false }
+      ],
+      training: [
+        { id: 'training-netballs', label: 'Netballs (3)', done: false },
+        { id: 'training-cones', label: 'Cones around the net', done: false },
+        { id: 'training-goalpost', label: 'Goalpost check', done: false },
+        { id: 'training-bibs', label: 'Bibs', done: false },
+        { id: 'training-water', label: 'Water bottles', done: false }
+      ]
+    };
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (saved && saved.items) return saved;
+      } catch (e) {}
+      return { items: structuredClone(DEFAULT_ITEMS), notes: { game: '', training: '' } };
+    }
+
+    let state = loadState();
+
+    const statusEl = document.getElementById('equipment-status');
+    const notesStatus = document.getElementById('notes-status');
+    const gameNotes = document.getElementById('game-notes');
+    const trainingNotes = document.getElementById('training-notes');
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function renderList(type) {
+      const list = document.querySelector(`.checklist[data-list="${type}"]`);
+      const items = state.items[type] || [];
+      list.innerHTML = items.map(item => `
+        <li>
+          <input type="checkbox" ${item.done ? 'checked' : ''} data-type="${type}" data-id="${item.id}">
+          <span>${escapeHtml(item.label)}</span>
+          <button type="button" class="btn-danger small" data-remove-task="${type}|${item.id}" style="margin-left:auto;">Remove</button>
+        </li>`).join('') || '<li class="muted">No items. Add one below.</li>';
+
+      list.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', () => {
+          const item = state.items[type].find(i => i.id === cb.dataset.id);
+          if (item) item.done = cb.checked;
+        });
+      });
+      list.querySelectorAll('[data-remove-task]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const [t, id] = btn.dataset.removeTask.split('|');
+          state.items[t] = state.items[t].filter(i => i.id !== id);
+          renderList(t);
+        });
+      });
+    }
+
+    function persist() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    document.getElementById('save-checklist').addEventListener('click', () => {
+      persist();
+      statusEl.textContent = 'Checklist saved.';
+      statusEl.className = 'status success';
+    });
+
+    document.getElementById('reset-checklist').addEventListener('click', () => {
+      ['game', 'training'].forEach(t => state.items[t].forEach(i => { i.done = false; }));
+      renderList('game');
+      renderList('training');
+      persist();
+      statusEl.textContent = 'All ticks cleared.';
+      statusEl.className = 'status';
+    });
+
+    document.getElementById('add-item').addEventListener('click', () => {
+      const label = prompt('Equipment item to add:');
+      if (!label || !label.trim()) return;
+      const type = confirm('Add to Game checklist? Press Cancel to add to Warm-up / Training.') ? 'game' : 'training';
+      state.items[type].push({ id: type + '-' + Date.now(), label: label.trim(), done: false });
+      renderList(type);
+      persist();
+    });
+
+    gameNotes.value = (state.notes && state.notes.game) || '';
+    trainingNotes.value = (state.notes && state.notes.training) || '';
+
+    document.getElementById('save-notes').addEventListener('click', () => {
+      state.notes = { game: gameNotes.value.trim(), training: trainingNotes.value.trim() };
+      persist();
+      notesStatus.textContent = 'Notes saved.';
+      notesStatus.className = 'status success';
+    });
+
+    renderList('game');
+    renderList('training');
+})();
+</script>
+<script>
+(function () {
+const STORAGE_KEY = 'mmco-stats-games';
+    const DEFAULT_PLAYERS = ['Maddie', 'Mia', 'Charlotte', 'Grace', 'Ella', 'Micah', 'Alex', 'Macca', 'Max', 'Wil', 'Jack'];
+    const COLUMNS = [
+      { key: 'goals', label: 'Goals' },
+      { key: 'attempts', label: 'Attempts' },
+      { key: 'assists', label: 'Assists' },
+      { key: 'centrePasses', label: 'Centre Passes' },
+      { key: 'feeds', label: 'Feeds' },
+      { key: 'passes', label: 'Passes' },
+      { key: 'turnovers', label: 'Turnovers' },
+      { key: 'intercepts', label: 'Intercepts' },
+      { key: 'deflections', label: 'Deflections' },
+      { key: 'rebounds', label: 'Rebounds' },
+      { key: 'penalties', label: 'Penalties' },
+      { key: 'offsides', label: 'Offsides' },
+      { key: 'contact', label: 'Contact' },
+      { key: 'obstruction', label: 'Obstruction' },
+      { key: 'footwork', label: 'Footwork' },
+      { key: 'minutes', label: 'Minutes' }
+    ];
+
+    const statusEl = document.getElementById('stats-status');
+    const opponentInput = document.getElementById('game-opponent');
+    const dateInput = document.getElementById('game-date');
+    const table = document.getElementById('stats-table');
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function loadGames() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+      catch (e) { return []; }
+    }
+    function persistGames(games) { localStorage.setItem(STORAGE_KEY, JSON.stringify(games)); }
+
+    let current = null;
+
+    function blankGame() {
+      const stats = {};
+      DEFAULT_PLAYERS.forEach(p => {
+        stats[p] = {};
+        COLUMNS.forEach(c => { stats[p][c.key] = 0; });
+      });
+      return {
+        id: Date.now(),
+        opponent: 'Practice Match',
+        date: new Date().toISOString().slice(0, 10),
+        stats
+      };
+    }
+
+    function normaliseGame(g) {
+      const stats = g.stats || {};
+      Object.keys(stats).forEach(p => {
+        COLUMNS.forEach(c => {
+          if (typeof stats[p][c.key] !== 'number') stats[p][c.key] = Number(stats[p][c.key]) || 0;
+        });
+      });
+      return { ...g, stats };
+    }
+
+    function setInputsFromGame() {
+      opponentInput.value = current.opponent || '';
+      dateInput.value = current.date || '';
+    }
+
+    function renderTable() {
+      const players = Object.keys(current.stats);
+      const header = `<thead><tr><th>Player</th>${COLUMNS.map(c => `<th>${c.label}</th>`).join('')}<th>Shooting %</th><th></th></tr></thead>`;
+      const rows = players.map(p => {
+        const s = current.stats[p];
+        const cells = COLUMNS.map(c =>
+          `<td><input type="number" min="0" step="1" value="${Number(s[c.key]) || 0}" data-player="${escapeHtml(p)}" data-col="${c.key}"></td>`
+        ).join('');
+        const pct = s.attempts > 0 ? ((s.goals / s.attempts) * 100).toFixed(1) + '%' : '—';
+        return `<tr><td><strong>${escapeHtml(p)}</strong></td>${cells}<td class="shoot-pct" data-player="${escapeHtml(p)}">${pct}</td><td><button type="button" class="btn-danger small" data-remove-player="${escapeHtml(p)}">Remove</button></td></tr>`;
+      }).join('');
+      const totals = `<tr class="totals"><td>Team total</td>${COLUMNS.map(c => {
+        const sum = players.reduce((t, p) => t + (Number(current.stats[p][c.key]) || 0), 0);
+        return `<td>${sum}</td>`;
+      }).join('')}<td></td><td></td></tr>`;
+      table.innerHTML = header + '<tbody>' + rows + totals + '</tbody>';
+
+      table.querySelectorAll('input[data-player]').forEach(inp => {
+        inp.addEventListener('input', () => {
+          const player = inp.dataset.player;
+          const col = inp.dataset.col;
+          const value = Math.max(0, Number(inp.value) || 0);
+          current.stats[player][col] = value;
+          updateRow(player);
+        });
+      });
+      table.querySelectorAll('[data-remove-player]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const p = btn.dataset.removePlayer;
+          if (confirm(`Remove ${p} from this game's stats?`)) {
+            delete current.stats[p];
+            renderTable();
+          }
+        });
+      });
+    }
+
+    function updateRow(player) {
+      const s = current.stats[player];
+      const cell = table.querySelector(`.shoot-pct[data-player="${CSS.escape(player)}"]`);
+      if (cell) cell.textContent = s.attempts > 0 ? ((s.goals / s.attempts) * 100).toFixed(1) + '%' : '—';
+      // update totals row
+      const players = Object.keys(current.stats);
+      const totalCells = table.querySelectorAll('tr.totals td');
+      if (totalCells.length) {
+        COLUMNS.forEach((c, i) => {
+          const sum = players.reduce((t, p) => t + (Number(current.stats[p][c.key]) || 0), 0);
+          if (totalCells[i + 1]) totalCells[i + 1].textContent = sum;
+        });
+      }
+    }
+
+    function renderSavedGames() {
+      const games = loadGames();
+      const wrap = document.getElementById('saved-games');
+      document.getElementById('games-empty').style.display = games.length ? 'none' : 'block';
+      wrap.innerHTML = games.map(g => {
+        const goals = Object.keys(g.stats || {}).reduce((t, p) => t + (Number(g.stats[p].goals) || 0), 0);
+        return `
+          <div class="card" style="margin-bottom:1rem;">
+            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;align-items:start;">
+              <div>
+                <h3 style="margin:0 0 .25rem;">${escapeHtml(g.opponent || 'Game')}</h3>
+                <p class="meta" style="margin:0;">${escapeHtml(g.date || 'No date')} &middot; ${goals} team goals</p>
+              </div>
+              <div class="actions" style="margin:0;">
+                <button type="button" class="btn-secondary small" data-open="${g.id}">Open</button>
+                <button type="button" class="btn-danger small" data-delete="${g.id}">Delete</button>
+              </div>
+            </div>
+          </div>`;
+      }).join('');
+
+      wrap.querySelectorAll('[data-open]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const g = loadGames().find(x => x.id === Number(btn.dataset.open));
+          if (g) { current = normaliseGame(g); setInputsFromGame(); renderTable(); statusEl.textContent = 'Game opened.'; statusEl.className = 'status success'; window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        });
+      });
+      wrap.querySelectorAll('[data-delete]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = Number(btn.dataset.delete);
+          persistGames(loadGames().filter(g => g.id !== id));
+          renderSavedGames();
+        });
+      });
+    }
+
+    function refreshMeta() {
+      current.opponent = opponentInput.value.trim() || 'Game';
+      current.date = dateInput.value;
+    }
+
+    opponentInput.addEventListener('input', refreshMeta);
+    dateInput.addEventListener('change', refreshMeta);
+
+    document.getElementById('save-game').addEventListener('click', () => {
+      refreshMeta();
+      const games = loadGames();
+      const idx = games.findIndex(g => g.id === current.id);
+      if (idx >= 0) games[idx] = current; else games.unshift(current);
+      persistGames(games);
+      renderSavedGames();
+      statusEl.textContent = 'Stats saved.';
+      statusEl.className = 'status success';
+    });
+
+    document.getElementById('new-game').addEventListener('click', () => {
+      current = blankGame();
+      setInputsFromGame();
+      renderTable();
+      statusEl.textContent = 'New blank game started.';
+      statusEl.className = 'status';
+    });
+
+    document.getElementById('add-player').addEventListener('click', () => {
+      const name = prompt('Player name:');
+      if (!name || !name.trim()) return;
+      const p = name.trim();
+      if (current.stats[p]) { alert('That player is already in this game.'); return; }
+      current.stats[p] = {};
+      COLUMNS.forEach(c => { current.stats[p][c.key] = 0; });
+      renderTable();
+    });
+
+    document.getElementById('export-csv').addEventListener('click', () => {
+      const players = Object.keys(current.stats);
+      const head = ['Player', ...COLUMNS.map(c => c.label), 'Shooting %'];
+      const rows = players.map(p => {
+        const s = current.stats[p];
+        const pct = s.attempts > 0 ? ((s.goals / s.attempts) * 100).toFixed(1) : '';
+        return [p, ...COLUMNS.map(c => s[c.key]), pct];
+      });
+      const csv = [head, ...rows].map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\r\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `mmco-stats-${(current.opponent || 'game').replace(/\s+/g, '-').toLowerCase()}.csv`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    current = blankGame();
+    setInputsFromGame();
+    renderTable();
+    renderSavedGames();
+})();
+</script>
+<script>
+(function () {
+  const panels = {
+    home: document.getElementById('panel-home'),
+    fitness: document.getElementById('panel-fitness'),
+    positions: document.getElementById('panel-positions'),
+    equipment: document.getElementById('panel-equipment'),
+    statistics: document.getElementById('panel-statistics')
+  };
+  const labels = {
+    home: 'M&M&CO | Taste the Rainbow',
+    fitness: 'Fitness Coach | M&M&CO',
+    positions: 'Positions Manager | M&M&CO',
+    equipment: 'Equipment Manager | M&M&CO',
+    statistics: 'Statistics | M&M&CO'
+  };
+  const tabs = Array.from(document.querySelectorAll('.tab[data-tab]'));
+
+  function tabFromHash() {
+    const h = (location.hash || '').replace(/^#/, '');
+    if (!h) return null;
+    if (h.indexOf('setup=') === 0) return 'positions';
+    if (h === 'fitness' || h === 'fitness-coach') return 'fitness';
+    if (h === 'positions' || h === 'positions-manager') return 'positions';
+    if (h === 'equipment' || h === 'equipment-manager') return 'equipment';
+    if (h === 'statistics' || h === 'stats') return 'statistics';
+    if (h === 'home') return 'home';
+    return null;
+  }
+
+  function activate(name, scroll) {
+    if (!panels[name]) name = 'home';
+    Object.keys(panels).forEach(function (key) {
+      if (!panels[key]) return;
+      panels[key].hidden = key !== name;
+    });
+    tabs.forEach(function (tab) {
+      const on = tab.dataset.tab === name;
+      tab.classList.toggle('active', on);
+      if (on) tab.setAttribute('aria-current', 'page');
+      else tab.removeAttribute('aria-current');
+    });
+    document.title = labels[name] || labels.home;
+    if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      if (tab.classList.contains('active')) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+
+  window.addEventListener('hashchange', function () {
+    const target = tabFromHash();
+    if (target) activate(target, true);
+  });
+
+  activate(tabFromHash() || 'home', false);
+})();
+</script>
 </body>
 </html>

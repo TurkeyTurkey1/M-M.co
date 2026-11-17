@@ -2,12 +2,17 @@
 
 SEPEP netball team website for **M&M&CO** — *"Taste the Rainbow"*.
 
-## Pages
-- `index.html` — main team page (team, uniform, player profiles, training, team role pages)
-- `fitness-coach.html` — warm-up planner with saved plans
-- `positions-manager.html` — interactive netball court, saved setups, share links
-- `equipment-manager.html` — equipment checklists and notes
-- `statistics.html` — full netball statistics tracker with CSV export
+## One site, five tabs
+Everything lives on the main page as tabs:
+
+- **Home** — team, uniform, player profiles, training sessions and extra info
+- **Fitness Coach** — warm-up planner with saved plans
+- **Positions Manager** — interactive netball court, saved setups and share links
+- **Equipment Manager** — equipment checklists and notes
+- **Statistics** — full netball statistics tracker with CSV export
+
+Tabs update the page content without leaving the site, and each tab has its own link:
+`index.html#fitness`, `index.html#positions`, `index.html#equipment`, `index.html#statistics`.
 
 ## Data & sharing
 This is a static site (GitHub Pages), so saved data lives in the browser's local storage:
