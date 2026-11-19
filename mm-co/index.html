@@ -15,6 +15,7 @@
       <a class="tab" data-tab="positions" href="#positions">Positions Manager</a>
       <a class="tab" data-tab="equipment" href="#equipment">Equipment Manager</a>
       <a class="tab" data-tab="statistics" href="#statistics">Statistics</a>
+      <a class="tab" data-tab="feedback" href="#feedback">Feedback</a>
     </nav>
   </header>
 
@@ -596,6 +597,99 @@
     </section>
     </div>
   </section>
+
+  <section class="tab-panel" id="panel-feedback" role="tabpanel" hidden>
+    <header class="subhero tab-hero">
+      <p class="tag">M&amp;M&amp;CO &bull; Taste the Rainbow</p>
+      <h1>Session Feedback</h1>
+      <p>All the feedback from our last four sessions &mdash; what went well and what to keep working on.</p>
+    </header>
+    <div class="section">
+      <section class="panel feedback-session">
+        <h2>Session 1</h2>
+        <div class="feedback-grid">
+          <article class="feedback-card">
+            <h3>Warm Up</h3>
+            <p>Structured well. Good mix of dynmaic stretching and increasing HR. Team all joined in and looked like they were having fun. I could hear support durign the warm up. This is great :)</p>
+          </article>
+          <article class="feedback-card">
+            <h3>Technical Session</h3>
+            <p>Passing around the circle and then shot. Drill looked well structured and team were fully engaged. Could work on force of passes to ensure they are harder to intercept?</p>
+            <p>Team communication and moral were excellent, you could see this in how well the drill was working.</p>
+            <p>Dropped to just passing - still very gentle. Love that you worked on the different types but goal for next session is applying force and power to the pass.</p>
+            <p>Well done for moving to allow other team to use the goal circle. Very impressive.</p>
+          </article>
+          <article class="feedback-card">
+            <h3>Tactical Session</h3>
+            <p>For having no tactical coach did well, it making something work. Maddie did excellent job extending passing and stepping.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel feedback-session">
+        <h2>Session 2</h2>
+        <div class="feedback-grid">
+          <article class="feedback-card">
+            <h3>Warm Up</h3>
+            <p>fun, creative, all team was engaged, built teamwork, connecting really well with netball concepts in a fun and engaging manner. Well done!! Keep this rolling for your next sessions :)</p>
+            <p>This built really good team mometum and readyness for the game.</p>
+          </article>
+          <article class="feedback-card">
+            <h3>Technical Session</h3>
+            <p>This looked well thoughtout and productive, team members were enagged and participting well. Cues were used with fun initiatives to reduce errors. Keep this up for Session 3.</p>
+          </article>
+          <article class="feedback-card">
+            <h3>Tactical Session</h3>
+            <p>Didnt see this &gt; need to ensure this is really clear Max and Micah for this week. Work with the technical coach to use what they are doing and apply that in your attacking or defense measures. An idea could be defending the goals, remembering you can jump to defend.</p>
+          </article>
+          <article class="feedback-card">
+            <h3>Uniform</h3>
+            <p>This was incredible. the shirts, the design the connectiveness was excellent!!</p>
+          </article>
+          <article class="feedback-card">
+            <h3>Team Spirit</h3>
+            <p>Team seemed flat during the game this week, what could you do as coaches to bring the team spirit, team chant in circle before the commence of play, think how the new zelanders use the haka to help bring the arousal at the satrt of their games. high fives after goals, key words to lift after a goal etc.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel feedback-session">
+        <h2>Session 3</h2>
+        <div class="feedback-grid">
+          <article class="feedback-card">
+            <h3>Warm Up</h3>
+            <p>Team looked engaged and firece. Looking like great contenders for todays matches. Keep this moral going. Warm up looked itimidating, it was all in time, there were smiles and team were doing the activities correctly.</p>
+          </article>
+          <article class="feedback-card">
+            <h3>Technical Session</h3>
+            <p>Team engagement is 100/10 - team is focused, listening and following. You use a loud voice, instrcutions are clear. Can see a clear improvement in steppingh/landing and passes.</p>
+          </article>
+          <article class="feedback-card">
+            <h3>Tactical Session</h3>
+            <p>Di</p>
+          </article>
+          <article class="feedback-card">
+            <h3>Uniform</h3>
+            <p>Uniform looks rad!! Go TEAM!!</p>
+          </article>
+          <article class="feedback-card">
+            <h3>Team Spirit</h3>
+            <p>Increible. Firece. Mean buisness. Ready to win!!</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel feedback-session">
+        <h2>Session 4</h2>
+        <div class="feedback-grid">
+          <article class="feedback-card">
+            <h3>Team Spirit</h3>
+            <p>Team seemed flat during the game this week, what could you do as coaches to bring the team spirit, team chant in circle before the commence of play, think how the new zelanders use the haka to help bring the arousal at the satrt of their games. high fives after goals, key words to lift after a goal etc.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </section>
   </main>
 
   <footer>
@@ -605,7 +699,8 @@
       <a href="#fitness">Fitness Coach</a> &middot;
       <a href="#positions">Positions Manager</a> &middot;
       <a href="#equipment">Equipment Manager</a> &middot;
-      <a href="#statistics">Statistics</a>
+      <a href="#statistics">Statistics</a> &middot;
+      <a href="#feedback">Feedback</a>
     </p>
     <p class="muted">SEPEP Netball Team Website</p>
   </footer>
@@ -1369,14 +1464,16 @@ const STORAGE_KEY = 'mmco-stats-games';
     fitness: document.getElementById('panel-fitness'),
     positions: document.getElementById('panel-positions'),
     equipment: document.getElementById('panel-equipment'),
-    statistics: document.getElementById('panel-statistics')
+    statistics: document.getElementById('panel-statistics'),
+    feedback: document.getElementById('panel-feedback')
   };
   const labels = {
     home: 'M&M&CO | Taste the Rainbow',
     fitness: 'Fitness Coach | M&M&CO',
     positions: 'Positions Manager | M&M&CO',
     equipment: 'Equipment Manager | M&M&CO',
-    statistics: 'Statistics | M&M&CO'
+    statistics: 'Statistics | M&M&CO',
+    feedback: 'Feedback | M&M&CO'
   };
   const tabs = Array.from(document.querySelectorAll('.tab[data-tab]'));
 
@@ -1388,6 +1485,7 @@ const STORAGE_KEY = 'mmco-stats-games';
     if (h === 'positions' || h === 'positions-manager') return 'positions';
     if (h === 'equipment' || h === 'equipment-manager') return 'equipment';
     if (h === 'statistics' || h === 'stats') return 'statistics';
+    if (h === 'feedback' || h === 'session-feedback') return 'feedback';
     if (h === 'home') return 'home';
     return null;
   }

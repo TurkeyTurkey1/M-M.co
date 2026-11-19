@@ -142,6 +142,28 @@ body {
 .tab.active { background: #7c3aed; color: #fff; }
 .tab-panel[hidden] { display: none; }
 .tab-hero { padding: 2rem 1.25rem 1.5rem; }
+.feedback-session { border-top: 4px solid #7c3aed; }
+.feedback-session > h2 { color: #6b21a8; }
+.feedback-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+.feedback-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-left: 5px solid #ff4fa3;
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+}
+.feedback-card:nth-child(6n+2) { border-left-color: #ff8c1a; }
+.feedback-card:nth-child(6n+3) { border-left-color: #ffd54a; }
+.feedback-card:nth-child(6n+4) { border-left-color: #4ade80; }
+.feedback-card:nth-child(6n+5) { border-left-color: #38bdf8; }
+.feedback-card:nth-child(6n+6) { border-left-color: #a78bfa; }
+.feedback-card h3 { margin: 0 0 .5rem; color: #7c3aed; font-size: 1.1rem; }
+.feedback-card p { margin: .45rem 0; line-height: 1.55; }
+.feedback-card p:last-child { margin-bottom: 0; }
 
 .section {
   max-width: 1100px;
