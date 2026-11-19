@@ -164,6 +164,18 @@ body {
 .feedback-card h3 { margin: 0 0 .5rem; color: #7c3aed; font-size: 1.1rem; }
 .feedback-card p { margin: .45rem 0; line-height: 1.55; }
 .feedback-card p:last-child { margin-bottom: 0; }
+.rules-table { width: 100%; border-collapse: collapse; }
+.rules-table th, .rules-table td {
+  border: 1px solid var(--border);
+  padding: .6rem .7rem;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.45;
+}
+.rules-table th { background: #f5f3ff; color: #5b21b6; font-size: .9rem; }
+.rules-table tbody tr:nth-child(even) { background: #fafaff; }
+.vote-y { color: #15803d; font-weight: 800; }
+.vote-red { color: #b91c1c; font-weight: 800; }
 
 .section {
   max-width: 1100px;

@@ -16,6 +16,7 @@
       <a class="tab" data-tab="equipment" href="#equipment">Equipment Manager</a>
       <a class="tab" data-tab="statistics" href="#statistics">Statistics</a>
       <a class="tab" data-tab="feedback" href="#feedback">Feedback</a>
+      <a class="tab" data-tab="rules" href="#rules">Rules &amp; Tribunals</a>
     </nav>
   </header>
 
@@ -690,6 +691,170 @@
       </section>
     </div>
   </section>
+
+  <section class="tab-panel" id="panel-rules" role="tabpanel" hidden>
+    <header class="subhero tab-hero">
+      <p class="tag">M&amp;M&amp;CO &bull; Taste the Rainbow</p>
+      <h1>Rules &amp; Tribunals</h1>
+      <p>Our modified netball rules, the changes we agreed to keep, and the card &amp; sin bin system that goes with them.</p>
+    </header>
+    <div class="section">
+      <section class="panel">
+        <h2>Team Review Sheet</h2>
+        <p class="section-intro">Details from the rules review. These stay saved in this browser.</p>
+        <form id="rules-info-form">
+          <div class="grid-2">
+            <div class="form-row">
+              <label for="rules-team">Team</label>
+              <input type="text" id="rules-team" placeholder="Team name">
+            </div>
+            <div class="form-row">
+              <label for="rules-present">People Present</label>
+              <input type="text" id="rules-present" placeholder="Who was present?">
+            </div>
+          </div>
+          <div class="actions">
+            <button type="submit" class="btn-primary">Save details</button>
+          </div>
+          <p class="status" id="rules-info-status"></p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Basic Rules</h2>
+        <p class="section-intro"><span class="vote-y">Y</span> means we agreed to keep the rule. Suggested changes are shown in the last column.</p>
+        <div class="scroll-x">
+          <table class="rules-table">
+            <thead><tr><th>Rule</th><th>Y/N</th><th>Modification / Suggestion</th></tr></thead>
+            <tbody>
+              <tr><td>Stepping rule (traditional) &mdash; turnover awarded.</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>3ft defending (traditional) &mdash; obstruction &mdash; turnover and SIN BIN</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>Non-contact (traditional) &mdash; contact &mdash; turnover and SIN BIN</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>Ball must be passed in every third.</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>5 sec to pass the ball.</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>No replay &mdash; dropped ball can be picked up, but if dribbling &mdash; turnover.</td><td><span class="vote-y">Y</span></td><td>No dribbling if dribbled replay &mdash; turnover</td></tr>
+              <tr><td>Offside (centre ball / in circle) &mdash; turnover</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Time</h2>
+        <div class="scroll-x">
+          <table class="rules-table">
+            <thead><tr><th>Rule</th><th>Y/N</th><th>Modification / Suggestion</th></tr></thead>
+            <tbody>
+              <tr><td>2 x 12 mins halves + 3 min half time.</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>Subs / team sheets to umpires &mdash; must have be on 2 per lesson. No subs during half.</td><td>&mdash;</td><td>&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Scoring</h2>
+        <div class="scroll-x">
+          <table class="rules-table">
+            <thead><tr><th>Rule</th><th>Y/N</th><th>Modification / Suggestion</th></tr></thead>
+            <tbody>
+              <tr><td>GA / GS only ones to shoot (traditional).</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>5 points &mdash; outside circle (ball in net / ring)</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>2 points &mdash; inside circle</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>1 point &mdash; hits ring (ball doesn't go in).</td><td>&mdash;</td><td>&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Court &amp; Players</h2>
+        <div class="scroll-x">
+          <table class="rules-table">
+            <thead><tr><th>Rule</th><th>Y/N</th><th>Modification / Suggestion</th></tr></thead>
+            <tbody>
+              <tr><td>Court: same as traditional netball.</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>Players: 7 v 7</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>Keep traditional positions &mdash; C, WA, WD, GA, GS, GD, GK</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Shooting, Defence &amp; Restarts</h2>
+        <div class="scroll-x">
+          <table class="rules-table">
+            <thead><tr><th>Rule</th><th>Y/N</th><th>Modification / Suggestion</th></tr></thead>
+            <tbody>
+              <tr><td>Allowed to jump to shoot &mdash; cannot touch the ring or hold the ring.</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>Jump defence allowed &mdash; but must go straight up, not forward. If forward, obstruction applies.</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>Start: centre pass</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>Goal scored: returns to centre ball &mdash; opposition team.</td><td><span class="vote-y">Y</span></td><td>Keep centre ball (traditional)</td></tr>
+              <tr><td>Out: turnover &mdash; last person to touch the ball.</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+              <tr><td>SIN BIN: 15 sec or 5 push ups (chest hit ground) in the SIN BIN &mdash; for offences obstruction and contact, offside any area.</td><td><span class="vote-y">Y</span></td><td>&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Card Meanings</h2>
+        <div class="scroll-x">
+          <table class="rules-table">
+            <thead><tr><th>Card</th><th>First Card</th><th>Second Card</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Yellow Card</strong></td><td>Verbal Warning</td><td>5-Minute Time-Out</td></tr>
+              <tr><td><strong>Red Card</strong></td><td>Sin Bin &ndash; out for the rest of the half</td><td>Out for the rest of the game / lesson</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted small">Card resets every lesson. Cards carry over between the two games within a lesson.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Red Card Offences</h2>
+        <div class="scroll-x">
+          <table class="rules-table">
+            <thead><tr><th>Offence</th><th>Charge</th></tr></thead>
+            <tbody>
+              <tr><td>Umpire Abuse</td><td><span class="vote-red">Red Card</span></td></tr>
+              <tr><td>Throwing Ball at Umpire</td><td><span class="vote-red">Red Card if intentional</span></td></tr>
+              <tr><td>Rough Contact (Umpires)</td><td><span class="vote-red">Red Card if intentional</span></td></tr>
+              <tr><td>Removal of Clothing</td><td><span class="vote-red">Second Red Card</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Yellow Card Offences</h2>
+        <div class="scroll-x">
+          <table class="rules-table">
+            <thead><tr><th>Offence</th><th>Charge</th></tr></thead>
+            <tbody>
+              <tr><td>Throwing Ball at Umpire</td><td>Yellow Card (umpire's discretion)</td></tr>
+              <tr><td>Throwing Ball Away When Turnover Occurs</td><td>Yellow Card</td></tr>
+              <tr><td>Inappropriate Language</td><td>Yellow Card</td></tr>
+              <tr><td>Accidentally Hitting Teacher</td><td>Yellow Card (umpire's discretion)</td></tr>
+              <tr><td>Arguing with Umpire</td><td>Yellow Card (umpire's discretion)</td></tr>
+              <tr><td>Rough Contact (Players)</td><td>Yellow Card (umpire's discretion)</td></tr>
+              <tr><td>Rough Contact (Umpires)</td><td>Yellow Card</td></tr>
+              <tr><td>Pushing</td><td>Yellow Card</td></tr>
+              <tr><td>Tripping</td><td>Yellow Card (umpire's discretion)</td></tr>
+              <tr><td>Travelling with Netball</td><td>Yellow Card</td></tr>
+              <tr><td>Out of Bounds on Purpose</td><td>Yellow Card</td></tr>
+              <tr><td>Stepping on Someone's Foot</td><td>Yellow Card</td></tr>
+              <tr><td>Screaming at Someone</td><td>Yellow Card (umpire's discretion)</td></tr>
+              <tr><td>Cheating</td><td>Yellow Card</td></tr>
+              <tr><td>Hair Pulling</td><td>Yellow Card (umpire's discretion)</td></tr>
+              <tr><td>Scratching Someone</td><td>Yellow Card (umpire's discretion)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </section>
   </main>
 
   <footer>
@@ -700,7 +865,8 @@
       <a href="#positions">Positions Manager</a> &middot;
       <a href="#equipment">Equipment Manager</a> &middot;
       <a href="#statistics">Statistics</a> &middot;
-      <a href="#feedback">Feedback</a>
+      <a href="#feedback">Feedback</a> &middot;
+      <a href="#rules">Rules &amp; Tribunals</a>
     </p>
     <p class="muted">SEPEP Netball Team Website</p>
   </footer>
@@ -1459,13 +1625,34 @@ const STORAGE_KEY = 'mmco-stats-games';
 </script>
 <script>
 (function () {
+  const KEY = 'mmco-rules-info';
+  const form = document.getElementById('rules-info-form');
+  const team = document.getElementById('rules-team');
+  const present = document.getElementById('rules-present');
+  const status = document.getElementById('rules-info-status');
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY)) || {};
+    team.value = saved.team || '';
+    present.value = saved.present || '';
+  } catch (e) {}
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    localStorage.setItem(KEY, JSON.stringify({ team: team.value.trim(), present: present.value.trim() }));
+    status.textContent = 'Details saved.';
+    status.className = 'status success';
+  });
+})();
+</script>
+<script>
+(function () {
   const panels = {
     home: document.getElementById('panel-home'),
     fitness: document.getElementById('panel-fitness'),
     positions: document.getElementById('panel-positions'),
     equipment: document.getElementById('panel-equipment'),
     statistics: document.getElementById('panel-statistics'),
-    feedback: document.getElementById('panel-feedback')
+    feedback: document.getElementById('panel-feedback'),
+    rules: document.getElementById('panel-rules')
   };
   const labels = {
     home: 'M&M&CO | Taste the Rainbow',
@@ -1473,7 +1660,8 @@ const STORAGE_KEY = 'mmco-stats-games';
     positions: 'Positions Manager | M&M&CO',
     equipment: 'Equipment Manager | M&M&CO',
     statistics: 'Statistics | M&M&CO',
-    feedback: 'Feedback | M&M&CO'
+    feedback: 'Feedback | M&M&CO',
+    rules: 'Rules & Tribunals | M&M&CO'
   };
   const tabs = Array.from(document.querySelectorAll('.tab[data-tab]'));
 
@@ -1486,6 +1674,7 @@ const STORAGE_KEY = 'mmco-stats-games';
     if (h === 'equipment' || h === 'equipment-manager') return 'equipment';
     if (h === 'statistics' || h === 'stats') return 'statistics';
     if (h === 'feedback' || h === 'session-feedback') return 'feedback';
+    if (h === 'rules' || h === 'rules-tribunals' || h === 'tribunals') return 'rules';
     if (h === 'home') return 'home';
     return null;
   }
