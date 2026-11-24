@@ -17,6 +17,8 @@
       <a class="tab" data-tab="statistics" href="#statistics">Statistics</a>
       <a class="tab" data-tab="feedback" href="#feedback">Feedback</a>
       <a class="tab" data-tab="rules" href="#rules">Rules &amp; Tribunals</a>
+      <a class="tab" data-tab="tactical" href="#tactical">Tactical Drills</a>
+      <a class="tab" data-tab="technical" href="#technical">Technical Drills</a>
     </nav>
   </header>
 
@@ -855,6 +857,179 @@
       </section>
     </div>
   </section>
+
+  <section class="tab-panel" id="panel-tactical" role="tabpanel" hidden>
+    <header class="subhero tab-hero">
+      <p class="tag">M&amp;M&amp;CO &bull; Taste the Rainbow</p>
+      <h1>Tactical Drills</h1>
+      <p>Plan attacking, defending and transition drills for the tactical team.</p>
+    </header>
+    <div class="section">
+      <section class="panel">
+        <h2>Create a Tactical Drill</h2>
+        <p class="section-intro">Fill in the details and save. Saved drills stay in this browser so you can reuse and edit them.</p>
+        <form id="tactical-drill-form">
+          <div class="grid-2">
+            <div class="form-row">
+              <label for="tactical-name">Drill name</label>
+              <input type="text" id="tactical-name" placeholder="e.g. Attacking triangle" required>
+            </div>
+            <div class="form-row">
+              <label for="tactical-focus">Tactical focus</label>
+              <select id="tactical-focus">
+                <option>Attacking</option>
+                <option>Defending</option>
+                <option>Transition</option>
+                <option>Set Play</option>
+                <option>Game Situation</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="tactical-duration">Duration (mins)</label>
+              <input type="number" id="tactical-duration" min="1" step="1" placeholder="15">
+            </div>
+            <div class="form-row">
+              <label for="tactical-equipment">Equipment</label>
+              <input type="text" id="tactical-equipment" placeholder="e.g. 3 netballs, cones, bibs">
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="tactical-objective">Objective</label>
+            <textarea id="tactical-objective" placeholder="What should the team achieve?"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="tactical-setup">Setup &amp; how to run it</label>
+            <textarea id="tactical-setup" placeholder="Step-by-step instructions..."></textarea>
+          </div>
+          <div class="form-row">
+            <label for="tactical-tips">Coaching points</label>
+            <textarea id="tactical-tips" placeholder="What to look for, cues to use, common mistakes..."></textarea>
+          </div>
+          <div class="actions">
+            <button type="submit" class="btn-primary">Save drill</button>
+            <button type="button" class="btn-secondary" id="tactical-clear">Clear form</button>
+          </div>
+          <p class="status" id="tactical-status"></p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Saved Tactical Drills</h2>
+        <div id="tactical-drills"></div>
+        <p class="muted small" id="tactical-empty">No saved drills yet.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Tactical Drills Ideas</h2>
+        <div class="drill-ideas">
+          <article class="card">
+            <h3>Attacking triangle</h3>
+            <p>Players create a triangle around the shooting circle to give multiple passing options. Progress from uncontested to adding defenders.</p>
+          </article>
+          <article class="card">
+            <h3>Reset pass</h3>
+            <p>If stuck, pass back to WA or C to reset and open up a new scoring option.</p>
+          </article>
+          <article class="card">
+            <h3>Defending the goal circle</h3>
+            <p>Defenders work together to block the circle. Remember you can jump straight up to defend — not forward.</p>
+          </article>
+          <article class="card">
+            <h3>Transition drill</h3>
+            <p>Win the ball and move it quickly out of defence into an attacking formation.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="tab-panel" id="panel-technical" role="tabpanel" hidden>
+    <header class="subhero tab-hero">
+      <p class="tag">M&amp;M&amp;CO &bull; Taste the Rainbow</p>
+      <h1>Technical Drills</h1>
+      <p>Build passing, catching, footwork and shooting drills for the technical team.</p>
+    </header>
+    <div class="section">
+      <section class="panel">
+        <h2>Create a Technical Drill</h2>
+        <p class="section-intro">Fill in the details and save. Saved drills stay in this browser so you can reuse and edit them.</p>
+        <form id="technical-drill-form">
+          <div class="grid-2">
+            <div class="form-row">
+              <label for="technical-name">Drill name</label>
+              <input type="text" id="technical-name" placeholder="e.g. Attacking triangle" required>
+            </div>
+            <div class="form-row">
+              <label for="technical-focus">Skill focus</label>
+              <select id="technical-focus">
+                <option>Passing</option>
+                <option>Catching</option>
+                <option>Footwork</option>
+                <option>Shooting</option>
+                <option>Moving</option>
+                <option>Defending</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="technical-duration">Duration (mins)</label>
+              <input type="number" id="technical-duration" min="1" step="1" placeholder="15">
+            </div>
+            <div class="form-row">
+              <label for="technical-equipment">Equipment</label>
+              <input type="text" id="technical-equipment" placeholder="e.g. 3 netballs, cones, bibs">
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="technical-objective">Objective</label>
+            <textarea id="technical-objective" placeholder="What should the team achieve?"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="technical-setup">Setup &amp; how to run it</label>
+            <textarea id="technical-setup" placeholder="Step-by-step instructions..."></textarea>
+          </div>
+          <div class="form-row">
+            <label for="technical-tips">Coaching points</label>
+            <textarea id="technical-tips" placeholder="What to look for, cues to use, common mistakes..."></textarea>
+          </div>
+          <div class="actions">
+            <button type="submit" class="btn-primary">Save drill</button>
+            <button type="button" class="btn-secondary" id="technical-clear">Clear form</button>
+          </div>
+          <p class="status" id="technical-status"></p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Saved Technical Drills</h2>
+        <div id="technical-drills"></div>
+        <p class="muted small" id="technical-empty">No saved drills yet.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Technical Drills Ideas</h2>
+        <div class="drill-ideas">
+          <article class="card">
+            <h3>Passing circle</h3>
+            <p>Pass and move around the circle. Focus on a loud voice, clear cues and enough force to avoid interceptions.</p>
+          </article>
+          <article class="card">
+            <h3>Train tracks</h3>
+            <p>Two lines of attackers and defenders move the ball down the court, increasing the defender ratio as the drill progresses.</p>
+          </article>
+          <article class="card">
+            <h3>Freeze frame footwork</h3>
+            <p>Call freeze mid-drill and check the landing foot and balance before the next pass.</p>
+          </article>
+          <article class="card">
+            <h3>Shooting practice</h3>
+            <p>GS and GA shoot from inside the circle, focusing on landing, balance and follow-through.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </section>
   </main>
 
   <footer>
@@ -866,7 +1041,9 @@
       <a href="#equipment">Equipment Manager</a> &middot;
       <a href="#statistics">Statistics</a> &middot;
       <a href="#feedback">Feedback</a> &middot;
-      <a href="#rules">Rules &amp; Tribunals</a>
+      <a href="#rules">Rules &amp; Tribunals</a> &middot;
+      <a href="#tactical">Tactical Drills</a> &middot;
+      <a href="#technical">Technical Drills</a>
     </p>
     <p class="muted">SEPEP Netball Team Website</p>
   </footer>
@@ -1643,6 +1820,149 @@ const STORAGE_KEY = 'mmco-stats-games';
   });
 })();
 </script>
+
+<script>
+(function () {
+  const configs = [
+    { key: 'tactical', storage: 'mmco-tactical-drills' },
+    { key: 'technical', storage: 'mmco-technical-drills' }
+  ];
+
+  function escapeHtml(str) {
+    return String(str || '').replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function lineBreaks(str) {
+    return escapeHtml(str).replace(/\n/g, '<br>');
+  }
+
+  function load(key) {
+    try { return JSON.parse(localStorage.getItem(key)) || []; }
+    catch (e) { return []; }
+  }
+
+  function save(key, list) {
+    localStorage.setItem(key, JSON.stringify(list));
+  }
+
+  configs.forEach(function (cfg) {
+    const form = document.getElementById(cfg.key + '-drill-form');
+    if (!form) return;
+    const names = ['name', 'focus', 'duration', 'equipment', 'objective', 'setup', 'tips'];
+    const fields = {};
+    names.forEach(function (n) { fields[n] = document.getElementById(cfg.key + '-' + n); });
+    const wrap = document.getElementById(cfg.key + '-drills');
+    const empty = document.getElementById(cfg.key + '-empty');
+    const status = document.getElementById(cfg.key + '-status');
+    let editingId = null;
+
+    function setStatus(text, className) {
+      status.textContent = text;
+      status.className = className || 'status';
+    }
+
+    function resetForm() {
+      form.reset();
+      editingId = null;
+    }
+
+    function render() {
+      const drills = load(cfg.storage);
+      empty.style.display = drills.length ? 'none' : 'block';
+      wrap.innerHTML = drills.map(function (d) {
+        return '<article class="drill-card">'
+          + '<h3>' + escapeHtml(d.name) + '</h3>'
+          + '<div class="drill-pills"><span class="pill">' + escapeHtml(d.focus) + '</span>'
+          + (d.duration ? '<span class="pill">' + escapeHtml(d.duration) + ' min</span>' : '')
+          + (d.equipment ? '<span class="pill">' + escapeHtml(d.equipment) + '</span>' : '') + '</div>'
+          + (d.objective ? '<p><strong>Objective:</strong> ' + lineBreaks(d.objective) + '</p>' : '')
+          + (d.setup ? '<p><strong>Setup &amp; how to run it:</strong><br>' + lineBreaks(d.setup) + '</p>' : '')
+          + (d.tips ? '<p><strong>Coaching points:</strong><br>' + lineBreaks(d.tips) + '</p>' : '')
+          + '<div class="actions">'
+          + '<button type="button" class="btn-secondary small" data-edit="' + d.id + '">Edit</button>'
+          + '<button type="button" class="btn-secondary small" data-copy="' + d.id + '">Copy text</button>'
+          + '<button type="button" class="btn-danger small" data-delete="' + d.id + '">Delete</button>'
+          + '</div></article>';
+      }).join('');
+
+      wrap.querySelectorAll('[data-delete]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const id = Number(btn.dataset.delete);
+          save(cfg.storage, load(cfg.storage).filter(function (d) { return d.id !== id; }));
+          if (editingId === id) resetForm();
+          render();
+          setStatus('Drill deleted.');
+        });
+      });
+
+      wrap.querySelectorAll('[data-edit]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const drill = load(cfg.storage).find(function (d) { return d.id === Number(btn.dataset.edit); });
+          if (!drill) return;
+          names.forEach(function (n) { fields[n].value = drill[n] || ''; });
+          editingId = drill.id;
+          setStatus('Editing "' + drill.name + '". Save to update it.', 'status warn');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
+      wrap.querySelectorAll('[data-copy]').forEach(function (btn) {
+        btn.addEventListener('click', async function () {
+          const drill = load(cfg.storage).find(function (d) { return d.id === Number(btn.dataset.copy); });
+          if (!drill) return;
+          const text = drill.name + '\n' + drill.focus + (drill.duration ? ' | ' + drill.duration + ' min' : '')
+            + (drill.equipment ? '\nEquipment: ' + drill.equipment : '')
+            + (drill.objective ? '\nObjective: ' + drill.objective : '')
+            + (drill.setup ? '\nSetup: ' + drill.setup : '')
+            + (drill.tips ? '\nCoaching points: ' + drill.tips : '');
+          try {
+            await navigator.clipboard.writeText(text);
+            setStatus('Drill text copied.', 'status success');
+          } catch (e) {
+            setStatus('Could not copy automatically. Select the drill text to copy it.', 'status warn');
+          }
+        });
+      });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = fields.name.value.trim();
+      if (!name) { fields.name.focus(); return; }
+      const data = {
+        name: name,
+        focus: fields.focus.value,
+        duration: fields.duration.value.trim(),
+        equipment: fields.equipment.value.trim(),
+        objective: fields.objective.value.trim(),
+        setup: fields.setup.value.trim(),
+        tips: fields.tips.value.trim()
+      };
+      const drills = load(cfg.storage);
+      if (editingId) {
+        const index = drills.findIndex(function (d) { return d.id === editingId; });
+        if (index >= 0) drills[index] = Object.assign({}, drills[index], data);
+        setStatus('Drill updated.', 'status success');
+      } else {
+        drills.unshift(Object.assign({ id: Date.now() }, data));
+        setStatus('Drill saved.', 'status success');
+      }
+      save(cfg.storage, drills);
+      resetForm();
+      render();
+    });
+
+    document.getElementById(cfg.key + '-clear').addEventListener('click', function () {
+      resetForm();
+      setStatus('Form cleared.');
+    });
+
+    render();
+  });
+})();
+</script>
 <script>
 (function () {
   const panels = {
@@ -1652,7 +1972,9 @@ const STORAGE_KEY = 'mmco-stats-games';
     equipment: document.getElementById('panel-equipment'),
     statistics: document.getElementById('panel-statistics'),
     feedback: document.getElementById('panel-feedback'),
-    rules: document.getElementById('panel-rules')
+    rules: document.getElementById('panel-rules'),
+    tactical: document.getElementById('panel-tactical'),
+    technical: document.getElementById('panel-technical')
   };
   const labels = {
     home: 'M&M&CO | Taste the Rainbow',
@@ -1661,7 +1983,9 @@ const STORAGE_KEY = 'mmco-stats-games';
     equipment: 'Equipment Manager | M&M&CO',
     statistics: 'Statistics | M&M&CO',
     feedback: 'Feedback | M&M&CO',
-    rules: 'Rules & Tribunals | M&M&CO'
+    rules: 'Rules & Tribunals | M&M&CO',
+    tactical: 'Tactical Drills | M&M&CO',
+    technical: 'Technical Drills | M&M&CO'
   };
   const tabs = Array.from(document.querySelectorAll('.tab[data-tab]'));
 
@@ -1675,6 +1999,8 @@ const STORAGE_KEY = 'mmco-stats-games';
     if (h === 'statistics' || h === 'stats') return 'statistics';
     if (h === 'feedback' || h === 'session-feedback') return 'feedback';
     if (h === 'rules' || h === 'rules-tribunals' || h === 'tribunals') return 'rules';
+    if (h === 'tactical' || h === 'tactical-drills') return 'tactical';
+    if (h === 'technical' || h === 'technical-drills') return 'technical';
     if (h === 'home') return 'home';
     return null;
   }

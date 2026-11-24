@@ -2,7 +2,7 @@
 
 SEPEP netball team website for **M&M&CO** — *"Taste the Rainbow"*.
 
-## One site, seven tabs
+## One site, nine tabs
 Everything lives on the main page as tabs:
 
 - **Home** — team, uniform, player profiles, training sessions and extra info
@@ -12,9 +12,11 @@ Everything lives on the main page as tabs:
 - **Statistics** — full netball statistics tracker with CSV export
 - **Feedback** — coach feedback from the last four sessions
 - **Rules & Tribunals** — modified rules, agreed changes, card meanings and offence charges
+- **Tactical Drills** — create and save attacking, defending and transition drills
+- **Technical Drills** — create and save passing, footwork, catching and shooting drills
 
 Tabs update the page content without leaving the site, and each tab has its own link:
-`index.html#fitness`, `index.html#positions`, `index.html#equipment`, `index.html#statistics`, `index.html#feedback`, `index.html#rules`.
+`index.html#fitness`, `index.html#positions`, `index.html#equipment`, `index.html#statistics`, `index.html#feedback`, `index.html#rules`, `index.html#tactical`, `index.html#technical`.
 
 ## Data & sharing
 This is a static site (GitHub Pages), so saved data lives in the browser's local storage:

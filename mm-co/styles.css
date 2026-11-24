@@ -176,6 +176,25 @@ body {
 .rules-table tbody tr:nth-child(even) { background: #fafaff; }
 .vote-y { color: #15803d; font-weight: 800; }
 .vote-red { color: #b91c1c; font-weight: 800; }
+.drill-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-left: 5px solid #38bdf8;
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+}
+#panel-technical .drill-card { border-left-color: #4ade80; }
+.drill-card h3 { margin: 0 0 .4rem; color: #6b21a8; }
+.drill-card p { margin: .5rem 0; line-height: 1.55; }
+.drill-pills { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .6rem; }
+.drill-ideas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.drill-ideas .card { border-left: 4px solid #ffd54a; }
+#panel-technical .drill-ideas .card { border-left-color: #4ade80; }
 
 .section {
   max-width: 1100px;
