@@ -4,13 +4,12 @@
  * SETUP (one time, in your Google Sheet):
  * 1. In your Sheet, open Extensions > Apps Script.
  * 2. Delete whatever is in Code.gs and paste this entire file.
- * 3. At the top, replace PASTE_YOUR_GOOGLE_SHEET_ID_HERE with your Sheet ID
- *    (the long string between /d/ and /edit in your Sheet URL).
+ * 3. Your Sheet ID is already filled in at the top - leave it as it is.
  * 4. Click Save.
  * 5. Click Deploy > New deployment > Web app.
  *    - Execute as: Me
  *    - Who has access: Anyone
- * 6. Copy the Web app URL and paste it into the "Cloud Sync" tab on the website.
+ * 6. Send the Web app URL to the website maintainer.
  *
  * The script creates its own worksheet called "WebsiteData".
  * Your existing worksheets are left untouched.
