@@ -24,7 +24,7 @@ Tabs update the page content without leaving the site, and each tab has its own 
 1. Open the Google Sheet and go to **Extensions → Apps Script**.
 2. Paste the file contents into `Code.gs` and save.
 3. Deploy as a **Web app**: Execute as **Me**, Who has access **Anyone**.
-4. Paste the Web app URL into the **Cloud Sync** tab on the website.
+4. The Web app URL is already built into the site, so sync starts automatically. If the URL changes, update it in the **Cloud Sync** tab.
 
 The script creates a `WebsiteData` worksheet and leaves existing tabs untouched. Saved data then syncs between devices. Anyone with the site link can edit, and the last save wins if two people edit at the same time.
 

@@ -9,6 +9,7 @@
 <script>
 (function () {
   var SETTINGS_KEY = 'mmco-sync-url';
+  var DEFAULT_URL = 'https://script.google.com/a/macros/s.tatachilla.sa.edu.au/s/AKfycbz70MNBhMd0RGAW-UkVFOpsZdXzliiD4dTclZ4wLPAR-zjlEPfBQTaEVjnBcOnbw0yeiQ/exec';
   var KEYS = [
     'mmco-warmup-plans',
     'mmco-positions-setups',
@@ -23,8 +24,8 @@
   var origRemove = Storage.prototype.removeItem;
   var cache = {};
   var timers = {};
-  var url = '';
-  try { url = origGet.call(localStorage, SETTINGS_KEY) || ''; } catch (e) {}
+  var url = DEFAULT_URL;
+  try { url = origGet.call(localStorage, SETTINGS_KEY) || DEFAULT_URL; } catch (e) {}
 
   Storage.prototype.getItem = function (key) {
     if (Object.prototype.hasOwnProperty.call(cache, key)) return cache[key];
@@ -1167,7 +1168,7 @@
     <div class="section">
       <section class="panel">
         <h2>Google Sheets Connection</h2>
-        <p class="section-intro">Deploy the Google Apps Script, then paste its Web app URL here. The URL is saved in this browser; once it is added to the site code, everyone gets it automatically.</p>
+        <p class="section-intro">The connection URL is already set up for everyone. You only need to change it here if the Google Apps Script is redeployed with a new URL.</p>
         <div class="form-row">
           <label for="sync-url">Web app URL</label>
           <input type="text" id="sync-url" placeholder="https://script.google.com/macros/s/.../exec">
