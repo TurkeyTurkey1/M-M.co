@@ -5,6 +5,132 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>M&amp;M&amp;CO | Taste the Rainbow</title>
   <link rel="stylesheet" href="styles.css">
+
+<script>
+(function () {
+  var SETTINGS_KEY = 'mmco-sync-url';
+  var KEYS = [
+    'mmco-warmup-plans',
+    'mmco-positions-setups',
+    'mmco-equipment',
+    'mmco-stats-games',
+    'mmco-rules-info',
+    'mmco-tactical-drills',
+    'mmco-technical-drills'
+  ];
+  var origGet = Storage.prototype.getItem;
+  var origSet = Storage.prototype.setItem;
+  var origRemove = Storage.prototype.removeItem;
+  var cache = {};
+  var timers = {};
+  var url = '';
+  try { url = origGet.call(localStorage, SETTINGS_KEY) || ''; } catch (e) {}
+
+  Storage.prototype.getItem = function (key) {
+    if (Object.prototype.hasOwnProperty.call(cache, key)) return cache[key];
+    return origGet.call(this, key);
+  };
+  Storage.prototype.setItem = function (key, value) {
+    origSet.call(this, key, value);
+    if (KEYS.indexOf(key) >= 0) queueWrite(key, String(value));
+  };
+  Storage.prototype.removeItem = function (key) {
+    origRemove.call(this, key);
+    if (Object.prototype.hasOwnProperty.call(cache, key)) delete cache[key];
+    if (KEYS.indexOf(key) >= 0) queueWrite(key, '');
+  };
+
+  function queueWrite(key, value) {
+    cache[key] = value;
+    if (timers[key]) clearTimeout(timers[key]);
+    timers[key] = setTimeout(function () { postWrite(key, value); }, 800);
+  }
+
+  function postWrite(key, value) {
+    if (!url) return;
+    var host = document.body || document.documentElement;
+    var frame = document.getElementById('mmcloud-frame');
+    if (!frame) {
+      frame = document.createElement('iframe');
+      frame.id = 'mmcloud-frame';
+      frame.style.display = 'none';
+      host.appendChild(frame);
+    }
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = url;
+    form.target = 'mmcloud-frame';
+    var field = document.createElement('input');
+    field.type = 'hidden';
+    field.name = 'payload';
+    field.value = JSON.stringify({ key: key, value: value });
+    form.appendChild(field);
+    host.appendChild(form);
+    form.submit();
+    host.removeChild(form);
+  }
+
+  function applyRemote(data, silent) {
+    var changed = false;
+    Object.keys(data || {}).forEach(function (key) {
+      if (KEYS.indexOf(key) < 0) return;
+      var remote = data[key] && data[key].value;
+      if (typeof remote !== 'string') return;
+      var local = origGet.call(localStorage, key);
+      if (local !== remote) {
+        cache[key] = remote;
+        origSet.call(localStorage, key, remote);
+        changed = true;
+      }
+    });
+    if (changed && !silent) window.location.reload();
+    return changed;
+  }
+
+  function readRemote(silent) {
+    if (!url) return false;
+    var name = '__mmcoCloud' + Math.floor(Math.random() * 1000000000);
+    var script = document.createElement('script');
+    var done = false;
+    function finish() {
+      if (done) return;
+      done = true;
+      try { delete window[name]; } catch (e) { window[name] = undefined; }
+      if (script.parentNode) script.parentNode.removeChild(script);
+    }
+    window[name] = function (res) {
+      finish();
+      if (res && res.ok && res.data) applyRemote(res.data, silent);
+      window.dispatchEvent(new CustomEvent('mmcloud-status', {
+        detail: { ok: !!(res && res.ok), message: res && res.ok ? 'Connected to Google Sheets.' : 'Connection failed.' }
+      }));
+    };
+    script.onerror = function () {
+      finish();
+      window.dispatchEvent(new CustomEvent('mmcloud-status', {
+        detail: { ok: false, message: 'Connection failed. Check the Web app URL and sharing settings.' }
+      }));
+    };
+    script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'action=read&cb=' + name + '&t=' + Date.now();
+    document.head.appendChild(script);
+    return true;
+  }
+
+  window.MMCloud = {
+    keys: KEYS,
+    getUrl: function () { return url; },
+    configure: function (newUrl) {
+      url = String(newUrl || '').trim();
+      if (url) origSet.call(localStorage, SETTINGS_KEY, url);
+      else origRemove.call(localStorage, SETTINGS_KEY);
+    },
+    refresh: function () { return readRemote(false); },
+    status: function () { return readRemote(true); }
+  };
+
+  if (url) readRemote(false);
+})();
+</script>
 </head>
 <body>
   <header class="sitebar">
@@ -19,6 +145,7 @@
       <a class="tab" data-tab="rules" href="#rules">Rules &amp; Tribunals</a>
       <a class="tab" data-tab="tactical" href="#tactical">Tactical Drills</a>
       <a class="tab" data-tab="technical" href="#technical">Technical Drills</a>
+      <a class="tab" data-tab="sync" href="#sync">Cloud Sync</a>
     </nav>
   </header>
 
@@ -1030,6 +1157,43 @@
       </section>
     </div>
   </section>
+
+  <section class="tab-panel" id="panel-sync" role="tabpanel" hidden>
+    <header class="subhero tab-hero">
+      <p class="tag">M&amp;M&amp;CO &bull; Taste the Rainbow</p>
+      <h1>Cloud Sync</h1>
+      <p>Connect the site to your Google Sheet so saved plans, setups, checklists, stats and drills update on every device.</p>
+    </header>
+    <div class="section">
+      <section class="panel">
+        <h2>Google Sheets Connection</h2>
+        <p class="section-intro">Deploy the Google Apps Script, then paste its Web app URL here. The URL is saved in this browser; once it is added to the site code, everyone gets it automatically.</p>
+        <div class="form-row">
+          <label for="sync-url">Web app URL</label>
+          <input type="text" id="sync-url" placeholder="https://script.google.com/macros/s/.../exec">
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-primary" id="sync-save">Save URL</button>
+          <button type="button" class="btn-secondary" id="sync-test">Test connection</button>
+          <button type="button" class="btn-secondary" id="sync-refresh">Sync now</button>
+        </div>
+        <p class="status" id="sync-status"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Setup Steps</h2>
+        <ol>
+          <li>Open your Google Sheet and choose <strong>Extensions &gt; Apps Script</strong>.</li>
+          <li>Paste the contents of <code>google-apps-script.gs</code> into <code>Code.gs</code>.</li>
+          <li>Click <strong>Save</strong>, then <strong>Deploy &gt; New deployment &gt; Web app</strong>.</li>
+          <li>Set <strong>Execute as: Me</strong> and <strong>Who has access: Anyone</strong>.</li>
+          <li>Copy the Web app URL and paste it above.</li>
+        </ol>
+        <p class="muted small">The script creates a worksheet called <strong>WebsiteData</strong> in your Sheet. Your existing tabs are untouched. Anyone with the website link can edit shared data; if two people save at once, the last save wins.</p>
+      </section>
+    </div>
+  </section>
+
   </main>
 
   <footer>
@@ -1043,7 +1207,8 @@
       <a href="#feedback">Feedback</a> &middot;
       <a href="#rules">Rules &amp; Tribunals</a> &middot;
       <a href="#tactical">Tactical Drills</a> &middot;
-      <a href="#technical">Technical Drills</a>
+      <a href="#technical">Technical Drills</a> &middot;
+      <a href="#sync">Cloud Sync</a>
     </p>
     <p class="muted">SEPEP Netball Team Website</p>
   </footer>
@@ -1963,6 +2128,35 @@ const STORAGE_KEY = 'mmco-stats-games';
   });
 })();
 </script>
+
+<script>
+(function () {
+  var input = document.getElementById('sync-url');
+  var status = document.getElementById('sync-status');
+  function setStatus(text, className) {
+    status.textContent = text;
+    status.className = className || 'status';
+  }
+  input.value = window.MMCloud.getUrl();
+  document.getElementById('sync-save').addEventListener('click', function () {
+    window.MMCloud.configure(input.value);
+    setStatus(input.value ? 'Web app URL saved in this browser.' : 'Web app URL cleared.', input.value ? 'status success' : 'status');
+  });
+  document.getElementById('sync-test').addEventListener('click', function () {
+    window.MMCloud.configure(input.value);
+    if (!window.MMCloud.status()) setStatus('Add a Web app URL first.', 'status warn');
+    else setStatus('Checking connection...', 'status');
+  });
+  document.getElementById('sync-refresh').addEventListener('click', function () {
+    window.MMCloud.configure(input.value);
+    if (!window.MMCloud.refresh()) setStatus('Add a Web app URL first.', 'status warn');
+    else setStatus('Syncing...', 'status');
+  });
+  window.addEventListener('mmcloud-status', function (e) {
+    setStatus(e.detail.message, e.detail.ok ? 'status success' : 'status warn');
+  });
+})();
+</script>
 <script>
 (function () {
   const panels = {
@@ -1974,7 +2168,8 @@ const STORAGE_KEY = 'mmco-stats-games';
     feedback: document.getElementById('panel-feedback'),
     rules: document.getElementById('panel-rules'),
     tactical: document.getElementById('panel-tactical'),
-    technical: document.getElementById('panel-technical')
+    technical: document.getElementById('panel-technical'),
+    sync: document.getElementById('panel-sync')
   };
   const labels = {
     home: 'M&M&CO | Taste the Rainbow',
@@ -1985,7 +2180,8 @@ const STORAGE_KEY = 'mmco-stats-games';
     feedback: 'Feedback | M&M&CO',
     rules: 'Rules & Tribunals | M&M&CO',
     tactical: 'Tactical Drills | M&M&CO',
-    technical: 'Technical Drills | M&M&CO'
+    technical: 'Technical Drills | M&M&CO',
+    sync: 'Cloud Sync | M&M&CO'
   };
   const tabs = Array.from(document.querySelectorAll('.tab[data-tab]'));
 
@@ -2001,6 +2197,7 @@ const STORAGE_KEY = 'mmco-stats-games';
     if (h === 'rules' || h === 'rules-tribunals' || h === 'tribunals') return 'rules';
     if (h === 'tactical' || h === 'tactical-drills') return 'tactical';
     if (h === 'technical' || h === 'technical-drills') return 'technical';
+    if (h === 'sync' || h === 'cloud-sync') return 'sync';
     if (h === 'home') return 'home';
     return null;
   }
