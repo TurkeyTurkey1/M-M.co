@@ -9,7 +9,7 @@ Everything lives on the main page as tabs:
 - **Fitness Coach** — warm-up planner with saved plans
 - **Positions Manager** — interactive netball court, saved setups and share links
 - **Equipment Manager** — equipment checklists and notes
-- **Statistics** — full netball statistics tracker with CSV export
+- **Statistics** — per-team goals, sin bins, out of bounds, yellow cards and red cards, with CSV export
 - **Feedback** — coach feedback from the last four sessions
 - **Rules & Tribunals** — modified rules, agreed changes, card meanings and offence charges
 - **Tactical Drills** — create and save attacking, defending and transition drills

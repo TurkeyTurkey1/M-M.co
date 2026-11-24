@@ -646,86 +646,72 @@
     <header class="subhero tab-hero">
       <p class="tag">M&amp;M&amp;CO &bull; Taste the Rainbow</p>
       <h1>Statistics</h1>
-      <p>Record netball statistics for every game, review totals, and export the numbers.</p>
+      <p>Record the five key stats for each team, review totals, and export the numbers.</p>
     </header>
     <div class="section">
-<section class="panel">
-      <h2>Game</h2>
-      <div class="grid-2">
-        <div class="form-row">
-          <label for="game-opponent">Opponent</label>
-          <input type="text" id="game-opponent" placeholder="e.g. Riverside Storm" value="Practice Match">
+      <section class="panel">
+        <h2>Game</h2>
+        <div class="grid-2">
+          <div class="form-row">
+            <label for="game-name">Game name</label>
+            <input type="text" id="game-name" placeholder="e.g. Practice Match" value="Practice Match">
+          </div>
+          <div class="form-row">
+            <label for="game-date">Date</label>
+            <input type="date" id="game-date">
+          </div>
         </div>
-        <div class="form-row">
-          <label for="game-date">Date</label>
-          <input type="date" id="game-date">
+        <div class="actions">
+          <button type="button" class="btn-primary" id="save-game">Save stats</button>
+          <button type="button" class="btn-secondary" id="new-game">New game</button>
+          <button type="button" class="btn-secondary" id="export-csv">Export current game (CSV)</button>
         </div>
-      </div>
-      <div class="actions">
-        <button type="button" class="btn-primary" id="save-game">Save stats</button>
-        <button type="button" class="btn-secondary" id="new-game">New game</button>
-        <button type="button" class="btn-secondary" id="export-csv">Export current game (CSV)</button>
-        <button type="button" class="btn-secondary" id="add-player">Add player</button>
-      </div>
-      <p class="status" id="stats-status"></p>
-    </section>
+        <p class="status" id="stats-status"></p>
+      </section>
 
-    <section class="panel">
-      <h2>Player Statistics</h2>
-      <p class="section-intro">Enter numbers for each player. Shooting % is calculated automatically.</p>
-      <div class="scroll-x">
-        <table class="stats-table" id="stats-table"></table>
-      </div>
-    </section>
+      <section class="panel">
+        <h2>Team Statistics</h2>
+        <p class="section-intro">Add a team for every side playing, then enter their numbers. Saved games sync through Google Sheets when Cloud Sync is connected.</p>
+        <div class="scroll-x">
+          <table class="stats-table team-stats-table" id="stats-table"></table>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-secondary" id="add-team">Add team</button>
+        </div>
+      </section>
 
-    <section class="panel">
-      <h2>Saved Games</h2>
-      <p class="section-intro">Saved games stay in this browser. Open a game to edit its stats.</p>
-      <div id="saved-games"></div>
-      <p class="muted small" id="games-empty">No saved games yet.</p>
-    </section>
+      <section class="panel">
+        <h2>Saved Games</h2>
+        <p class="section-intro">Saved games stay in this browser and sync to your Sheet when connected. Open a game to edit its stats.</p>
+        <div id="saved-games"></div>
+        <p class="muted small" id="games-empty">No saved games yet.</p>
+      </section>
 
-    <section class="panel">
-      <h2>Netball Stat Guide</h2>
-      <div class="grid-2">
-        <div class="card">
-          <h3>Shooting</h3>
-          <ul>
-            <li><strong>Goals</strong> — shots that went in</li>
-            <li><strong>Goal Attempts</strong> — every shot taken</li>
-            <li><strong>Shooting %</strong> — goals &divide; attempts</li>
-            <li><strong>Goal Assists</strong> — pass that directly led to a goal</li>
-          </ul>
+      <section class="panel">
+        <h2>Stat Guide</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Goals</h3>
+            <p>Shots that went into the goal circle.</p>
+          </div>
+          <div class="card">
+            <h3>Sin bin</h3>
+            <p>Times a player was sent off court for two minutes.</p>
+          </div>
+          <div class="card">
+            <h3>Out of bounds</h3>
+            <p>Times the ball went outside the court.</p>
+          </div>
+          <div class="card">
+            <h3>Yellow card</h3>
+            <p>Formal warning for repeated or unsporting behaviour.</p>
+          </div>
+          <div class="card">
+            <h3>Red card</h3>
+            <p>Serious offence &mdash; player is sent off the court.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3>Attack</h3>
-          <ul>
-            <li><strong>Centre Passes</strong> — centre passes taken</li>
-            <li><strong>Feeds</strong> — passes into the shooting circle</li>
-            <li><strong>Passes</strong> — total passes made</li>
-            <li><strong>Turnovers</strong> — possessions lost</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Defence</h3>
-          <ul>
-            <li><strong>Intercepts</strong> — balls caught from the opposition</li>
-            <li><strong>Deflections</strong> — balls touched but not caught</li>
-            <li><strong>Rebounds</strong> — recovered missed shots</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Discipline</h3>
-          <ul>
-            <li><strong>Penalties</strong> — total penalties conceded</li>
-            <li><strong>Offsides</strong> — offside calls</li>
-            <li><strong>Contact</strong> — contact calls</li>
-            <li><strong>Obstruction</strong> — obstruction calls</li>
-            <li><strong>Footwork</strong> — footwork calls</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+      </section>
     </div>
   </section>
 
@@ -1751,219 +1737,245 @@ const STORAGE_KEY = 'mmco-equipment';
 </script>
 <script>
 (function () {
-const STORAGE_KEY = 'mmco-stats-games';
-    const DEFAULT_PLAYERS = ['Maddie', 'Mia', 'Charlotte', 'Grace', 'Ella', 'Micah', 'Alex', 'Macca', 'Max', 'Wil', 'Jack'];
-    const COLUMNS = [
-      { key: 'goals', label: 'Goals' },
-      { key: 'attempts', label: 'Attempts' },
-      { key: 'assists', label: 'Assists' },
-      { key: 'centrePasses', label: 'Centre Passes' },
-      { key: 'feeds', label: 'Feeds' },
-      { key: 'passes', label: 'Passes' },
-      { key: 'turnovers', label: 'Turnovers' },
-      { key: 'intercepts', label: 'Intercepts' },
-      { key: 'deflections', label: 'Deflections' },
-      { key: 'rebounds', label: 'Rebounds' },
-      { key: 'penalties', label: 'Penalties' },
-      { key: 'offsides', label: 'Offsides' },
-      { key: 'contact', label: 'Contact' },
-      { key: 'obstruction', label: 'Obstruction' },
-      { key: 'footwork', label: 'Footwork' },
-      { key: 'minutes', label: 'Minutes' }
-    ];
+  const STORAGE_KEY = 'mmco-stats-games';
+  const COLUMNS = [
+    { key: 'goals', label: 'Goals' },
+    { key: 'sinBin', label: 'Sin bin' },
+    { key: 'outOfBounds', label: 'Out of bounds' },
+    { key: 'yellowCard', label: 'Yellow card' },
+    { key: 'redCard', label: 'Red card' }
+  ];
 
-    const statusEl = document.getElementById('stats-status');
-    const opponentInput = document.getElementById('game-opponent');
-    const dateInput = document.getElementById('game-date');
-    const table = document.getElementById('stats-table');
+  const statusEl = document.getElementById('stats-status');
+  const nameInput = document.getElementById('game-name');
+  const dateInput = document.getElementById('game-date');
+  const table = document.getElementById('stats-table');
 
-    function escapeHtml(str) {
-      return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    }
+  function escapeHtml(str) {
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
 
-    function loadGames() {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
-      catch (e) { return []; }
-    }
-    function persistGames(games) { localStorage.setItem(STORAGE_KEY, JSON.stringify(games)); }
+  function setStatus(text, className) {
+    statusEl.textContent = text;
+    statusEl.className = className || 'status';
+  }
 
-    let current = null;
+  function blankTeam(name) {
+    const team = { name: name || '' };
+    COLUMNS.forEach(function (c) { team[c.key] = 0; });
+    return team;
+  }
 
-    function blankGame() {
-      const stats = {};
-      DEFAULT_PLAYERS.forEach(p => {
-        stats[p] = {};
-        COLUMNS.forEach(c => { stats[p][c.key] = 0; });
+  function blankGame() {
+    return {
+      id: Date.now(),
+      name: 'Practice Match',
+      date: new Date().toISOString().slice(0, 10),
+      teams: [blankTeam('M&M&CO'), blankTeam('Opponent')]
+    };
+  }
+
+  function normaliseGame(g) {
+    let teams = g.teams;
+    if (!Array.isArray(teams) || !teams.length) {
+      const old = [blankTeam('M&M&CO')];
+      const oldStats = g.stats || {};
+      Object.keys(oldStats).forEach(function (player) {
+        old[0].goals += Number((oldStats[player] || {}).goals) || 0;
       });
-      return {
-        id: Date.now(),
-        opponent: 'Practice Match',
-        date: new Date().toISOString().slice(0, 10),
-        stats
-      };
+      old.push(blankTeam(g.opponent || 'Opponent'));
+      teams = old;
     }
+    teams = teams.map(function (t) {
+      const team = blankTeam(t.name || '');
+      COLUMNS.forEach(function (c) { team[c.key] = Math.max(0, Number(t[c.key]) || 0); });
+      return team;
+    });
+    return {
+      id: g.id || Date.now(),
+      name: g.name || g.opponent || 'Game',
+      date: g.date || '',
+      teams: teams
+    };
+  }
 
-    function normaliseGame(g) {
-      const stats = g.stats || {};
-      Object.keys(stats).forEach(p => {
-        COLUMNS.forEach(c => {
-          if (typeof stats[p][c.key] !== 'number') stats[p][c.key] = Number(stats[p][c.key]) || 0;
-        });
-      });
-      return { ...g, stats };
-    }
+  function loadGames() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch (e) { return []; }
+  }
 
-    function setInputsFromGame() {
-      opponentInput.value = current.opponent || '';
-      dateInput.value = current.date || '';
-    }
+  function persistGames(games) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(games));
+  }
 
-    function renderTable() {
-      const players = Object.keys(current.stats);
-      const header = `<thead><tr><th>Player</th>${COLUMNS.map(c => `<th>${c.label}</th>`).join('')}<th>Shooting %</th><th></th></tr></thead>`;
-      const rows = players.map(p => {
-        const s = current.stats[p];
-        const cells = COLUMNS.map(c =>
-          `<td><input type="number" min="0" step="1" value="${Number(s[c.key]) || 0}" data-player="${escapeHtml(p)}" data-col="${c.key}"></td>`
-        ).join('');
-        const pct = s.attempts > 0 ? ((s.goals / s.attempts) * 100).toFixed(1) + '%' : '—';
-        return `<tr><td><strong>${escapeHtml(p)}</strong></td>${cells}<td class="shoot-pct" data-player="${escapeHtml(p)}">${pct}</td><td><button type="button" class="btn-danger small" data-remove-player="${escapeHtml(p)}">Remove</button></td></tr>`;
+  let current = null;
+
+  function setInputsFromGame() {
+    nameInput.value = current.name || '';
+    dateInput.value = current.date || '';
+  }
+
+  function updateTotals() {
+    const cells = table.querySelectorAll('tr.totals td');
+    if (!cells.length) return;
+    COLUMNS.forEach(function (c, i) {
+      const sum = current.teams.reduce(function (t, team) { return t + (Number(team[c.key]) || 0); }, 0);
+      if (cells[i + 1]) cells[i + 1].textContent = sum;
+    });
+  }
+
+  function renderTable() {
+    const header = '<thead><tr><th>Team</th>'
+      + COLUMNS.map(function (c) { return '<th>' + c.label + '</th>'; }).join('')
+      + '<th></th></tr></thead>';
+
+    const rows = current.teams.map(function (team, index) {
+      const cells = COLUMNS.map(function (c) {
+        return '<td><input type="number" min="0" step="1" value="' + (Number(team[c.key]) || 0)
+          + '" data-team="' + index + '" data-col="' + c.key + '"></td>';
       }).join('');
-      const totals = `<tr class="totals"><td>Team total</td>${COLUMNS.map(c => {
-        const sum = players.reduce((t, p) => t + (Number(current.stats[p][c.key]) || 0), 0);
-        return `<td>${sum}</td>`;
-      }).join('')}<td></td><td></td></tr>`;
-      table.innerHTML = header + '<tbody>' + rows + totals + '</tbody>';
+      return '<tr><td><input type="text" class="team-name-input" value="' + escapeHtml(team.name)
+        + '" data-team-name="' + index + '" placeholder="Team name"></td>' + cells
+        + '<td><button type="button" class="btn-danger small" data-remove-team="' + index + '">Remove</button></td></tr>';
+    }).join('');
 
-      table.querySelectorAll('input[data-player]').forEach(inp => {
-        inp.addEventListener('input', () => {
-          const player = inp.dataset.player;
-          const col = inp.dataset.col;
-          const value = Math.max(0, Number(inp.value) || 0);
-          current.stats[player][col] = value;
-          updateRow(player);
-        });
+    const totals = '<tr class="totals"><td>All teams</td>' + COLUMNS.map(function (c) {
+      const sum = current.teams.reduce(function (t, team) { return t + (Number(team[c.key]) || 0); }, 0);
+      return '<td>' + sum + '</td>';
+    }).join('') + '<td></td></tr>';
+
+    table.innerHTML = header + '<tbody>' + rows + totals + '</tbody>';
+
+    table.querySelectorAll('input[data-col]').forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        const index = Number(inp.dataset.team);
+        current.teams[index][inp.dataset.col] = Math.max(0, Number(inp.value) || 0);
+        updateTotals();
       });
-      table.querySelectorAll('[data-remove-player]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const p = btn.dataset.removePlayer;
-          if (confirm(`Remove ${p} from this game's stats?`)) {
-            delete current.stats[p];
-            renderTable();
-          }
-        });
-      });
-    }
-
-    function updateRow(player) {
-      const s = current.stats[player];
-      const cell = table.querySelector(`.shoot-pct[data-player="${CSS.escape(player)}"]`);
-      if (cell) cell.textContent = s.attempts > 0 ? ((s.goals / s.attempts) * 100).toFixed(1) + '%' : '—';
-      // update totals row
-      const players = Object.keys(current.stats);
-      const totalCells = table.querySelectorAll('tr.totals td');
-      if (totalCells.length) {
-        COLUMNS.forEach((c, i) => {
-          const sum = players.reduce((t, p) => t + (Number(current.stats[p][c.key]) || 0), 0);
-          if (totalCells[i + 1]) totalCells[i + 1].textContent = sum;
-        });
-      }
-    }
-
-    function renderSavedGames() {
-      const games = loadGames();
-      const wrap = document.getElementById('saved-games');
-      document.getElementById('games-empty').style.display = games.length ? 'none' : 'block';
-      wrap.innerHTML = games.map(g => {
-        const goals = Object.keys(g.stats || {}).reduce((t, p) => t + (Number(g.stats[p].goals) || 0), 0);
-        return `
-          <div class="card" style="margin-bottom:1rem;">
-            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;align-items:start;">
-              <div>
-                <h3 style="margin:0 0 .25rem;">${escapeHtml(g.opponent || 'Game')}</h3>
-                <p class="meta" style="margin:0;">${escapeHtml(g.date || 'No date')} &middot; ${goals} team goals</p>
-              </div>
-              <div class="actions" style="margin:0;">
-                <button type="button" class="btn-secondary small" data-open="${g.id}">Open</button>
-                <button type="button" class="btn-danger small" data-delete="${g.id}">Delete</button>
-              </div>
-            </div>
-          </div>`;
-      }).join('');
-
-      wrap.querySelectorAll('[data-open]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const g = loadGames().find(x => x.id === Number(btn.dataset.open));
-          if (g) { current = normaliseGame(g); setInputsFromGame(); renderTable(); statusEl.textContent = 'Game opened.'; statusEl.className = 'status success'; window.scrollTo({ top: 0, behavior: 'smooth' }); }
-        });
-      });
-      wrap.querySelectorAll('[data-delete]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const id = Number(btn.dataset.delete);
-          persistGames(loadGames().filter(g => g.id !== id));
-          renderSavedGames();
-        });
-      });
-    }
-
-    function refreshMeta() {
-      current.opponent = opponentInput.value.trim() || 'Game';
-      current.date = dateInput.value;
-    }
-
-    opponentInput.addEventListener('input', refreshMeta);
-    dateInput.addEventListener('change', refreshMeta);
-
-    document.getElementById('save-game').addEventListener('click', () => {
-      refreshMeta();
-      const games = loadGames();
-      const idx = games.findIndex(g => g.id === current.id);
-      if (idx >= 0) games[idx] = current; else games.unshift(current);
-      persistGames(games);
-      renderSavedGames();
-      statusEl.textContent = 'Stats saved.';
-      statusEl.className = 'status success';
     });
 
-    document.getElementById('new-game').addEventListener('click', () => {
-      current = blankGame();
-      setInputsFromGame();
-      renderTable();
-      statusEl.textContent = 'New blank game started.';
-      statusEl.className = 'status';
-    });
-
-    document.getElementById('add-player').addEventListener('click', () => {
-      const name = prompt('Player name:');
-      if (!name || !name.trim()) return;
-      const p = name.trim();
-      if (current.stats[p]) { alert('That player is already in this game.'); return; }
-      current.stats[p] = {};
-      COLUMNS.forEach(c => { current.stats[p][c.key] = 0; });
-      renderTable();
-    });
-
-    document.getElementById('export-csv').addEventListener('click', () => {
-      const players = Object.keys(current.stats);
-      const head = ['Player', ...COLUMNS.map(c => c.label), 'Shooting %'];
-      const rows = players.map(p => {
-        const s = current.stats[p];
-        const pct = s.attempts > 0 ? ((s.goals / s.attempts) * 100).toFixed(1) : '';
-        return [p, ...COLUMNS.map(c => s[c.key]), pct];
+    table.querySelectorAll('input[data-team-name]').forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        current.teams[Number(inp.dataset.teamName)].name = inp.value;
       });
-      const csv = [head, ...rows].map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\r\n');
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `mmco-stats-${(current.opponent || 'game').replace(/\s+/g, '-').toLowerCase()}.csv`;
-      a.click();
-      URL.revokeObjectURL(a.href);
     });
 
+    table.querySelectorAll('[data-remove-team]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (current.teams.length <= 1) {
+          setStatus('Keep at least one team.', 'status warn');
+          return;
+        }
+        current.teams.splice(Number(btn.dataset.removeTeam), 1);
+        renderTable();
+        setStatus('Team removed.');
+      });
+    });
+  }
+
+  function gameSummary(g) {
+    if (g.teams.length === 2) {
+      return escapeHtml(g.teams[0].name) + ' ' + (Number(g.teams[0].goals) || 0)
+        + ' &ndash; ' + (Number(g.teams[1].goals) || 0) + ' ' + escapeHtml(g.teams[1].name);
+    }
+    return g.teams.map(function (t) {
+      return escapeHtml(t.name) + ' (' + (Number(t.goals) || 0) + ')';
+    }).join(', ');
+  }
+
+  function renderSavedGames() {
+    const games = loadGames().map(normaliseGame);
+    const wrap = document.getElementById('saved-games');
+    document.getElementById('games-empty').style.display = games.length ? 'none' : 'block';
+    wrap.innerHTML = games.map(function (g) {
+      return '<div class="card" style="margin-bottom:1rem;">'
+        + '<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;align-items:start;">'
+        + '<div><h3 style="margin:0 0 .25rem;">' + escapeHtml(g.name) + '</h3>'
+        + '<p class="meta" style="margin:0;">' + escapeHtml(g.date || 'No date') + ' &middot; ' + gameSummary(g) + '</p></div>'
+        + '<div class="actions" style="margin:0;">'
+        + '<button type="button" class="btn-secondary small" data-open="' + g.id + '">Open</button>'
+        + '<button type="button" class="btn-danger small" data-delete="' + g.id + '">Delete</button>'
+        + '</div></div></div>';
+    }).join('');
+
+    wrap.querySelectorAll('[data-open]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const g = loadGames().map(normaliseGame).find(function (x) { return x.id === Number(btn.dataset.open); });
+        if (g) {
+          current = g;
+          setInputsFromGame();
+          renderTable();
+          setStatus('Game opened.', 'status success');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
+
+    wrap.querySelectorAll('[data-delete]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const id = Number(btn.dataset.delete);
+        persistGames(loadGames().filter(function (g) { return g.id !== id; }));
+        renderSavedGames();
+        setStatus('Game deleted.');
+      });
+    });
+  }
+
+  function refreshMeta() {
+    current.name = nameInput.value.trim() || 'Game';
+    current.date = dateInput.value;
+  }
+
+  nameInput.addEventListener('input', refreshMeta);
+  dateInput.addEventListener('change', refreshMeta);
+
+  document.getElementById('save-game').addEventListener('click', function () {
+    refreshMeta();
+    const games = loadGames().map(normaliseGame);
+    const idx = games.findIndex(function (g) { return g.id === current.id; });
+    if (idx >= 0) games[idx] = current; else games.unshift(current);
+    persistGames(games);
+    renderSavedGames();
+    setStatus('Stats saved.', 'status success');
+  });
+
+  document.getElementById('new-game').addEventListener('click', function () {
     current = blankGame();
     setInputsFromGame();
     renderTable();
-    renderSavedGames();
+    setStatus('New blank game started.');
+  });
+
+  document.getElementById('add-team').addEventListener('click', function () {
+    const name = prompt('Team name:');
+    if (!name || !name.trim()) return;
+    current.teams.push(blankTeam(name.trim()));
+    renderTable();
+    setStatus('Team added.', 'status success');
+  });
+
+  document.getElementById('export-csv').addEventListener('click', function () {
+    const head = ['Game', 'Date', 'Team'].concat(COLUMNS.map(function (c) { return c.label; }));
+    const rows = current.teams.map(function (t) {
+      return [current.name, current.date, t.name].concat(COLUMNS.map(function (c) { return t[c.key]; }));
+    });
+    const csv = [head].concat(rows).map(function (r) {
+      return r.map(function (v) { return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; }).join(',');
+    }).join('\r\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'mmco-stats-' + (current.name || 'game').replace(/\s+/g, '-').toLowerCase() + '.csv';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  current = blankGame();
+  setInputsFromGame();
+  renderTable();
+  renderSavedGames();
 })();
 </script>
 <script>

@@ -403,6 +403,8 @@ button, .btn-secondary {
 .scroll-x { overflow-x: auto; }
 .stats-table { min-width: 1200px; }
 .stats-table input { min-width: 60px; padding: .35rem .4rem; }
+.team-stats-table { min-width: 760px; }
+.team-stats-table .team-name-input { min-width: 160px; font-weight: 700; }
 .totals { font-weight: 700; background: #f9fafb; }
 
 footer {
